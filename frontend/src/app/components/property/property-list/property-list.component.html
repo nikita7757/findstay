@@ -1,0 +1,14 @@
+<app-navbar></app-navbar>
+
+<div class="property-list">
+
+  <app-property-filter
+    (filtersChanged)="applyPropertyFilters($event)">
+  </app-property-filter>
+
+  <app-property-card
+    *ngFor="let property of properties"
+    [property]="property">
+  </app-property-card>
+
+</div>

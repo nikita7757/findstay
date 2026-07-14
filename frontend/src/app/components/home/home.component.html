@@ -1,0 +1,417 @@
+<app-navbar></app-navbar>
+
+
+<!-- HERO SECTION -->
+
+<section class="hero-section">
+
+  <div class="overlay">
+
+    <div class="container text-center hero-content">
+
+
+      <!-- SEARCH BOX -->
+
+      <div class="search-box">
+
+        <div class="search-bar-container">
+
+
+          <!-- WHERE -->
+
+          <div
+            class="search-section where-section position-relative">
+
+
+            <label class="search-label">
+              Where
+            </label>
+
+
+            <input
+              type="text"
+              class="form-control search-input where-input"
+              placeholder="Search destinations"
+              [(ngModel)]="selectedDestination"
+              (focus)="showDropdown = true"
+              (blur)="hideDropdown()">
+
+
+            <!-- DESTINATION DROPDOWN -->
+
+            <div
+              class="destination-dropdown"
+              *ngIf="showDropdown">
+
+
+              <h6 class="dropdown-title">
+                Suggested destinations
+              </h6>
+
+
+              <div
+                class="destination-item"
+                *ngFor="let place of destinations"
+                (mousedown)="selectDestination(place)">
+
+
+                <div class="icon-box">
+
+                  <i class="bi bi-geo-alt-fill"></i>
+
+                </div>
+
+
+                <div class="destination-text">
+
+                  <h6>
+                    {{ place.name }}
+                  </h6>
+
+                  <small>
+                    {{ place.desc }}
+                  </small>
+
+                </div>
+
+
+              </div>
+
+
+              <div
+                class="destination-item"
+                *ngIf="destinations.length === 0">
+
+                <div class="destination-text">
+
+                  <small>
+                    No suggested destinations available
+                  </small>
+
+                </div>
+
+              </div>
+
+
+            </div>
+
+
+          </div>
+
+
+          <div class="search-divider"></div>
+
+
+          <!-- CHECK IN / CHECK OUT -->
+
+          <div class="search-section calendar-section">
+
+
+            <label class="search-label">
+              Check in - Check out
+            </label>
+
+
+            <input
+              mwlFlatpickr
+              class="form-control search-input calendar-input"
+              [(ngModel)]="selectedDates"
+              [altInput]="true"
+              [mode]="'range'"
+              [showMonths]="2"
+              [dateFormat]="'Y-m-d'"
+              [altFormat]="'j M'"
+              [minDate]="'today'"
+              placeholder="Add dates">
+
+
+          </div>
+
+
+          <div class="search-divider"></div>
+
+
+          <!-- GUESTS -->
+
+          <div
+            class="search-section guest-section position-relative">
+
+
+            <label class="search-label">
+              Guests
+            </label>
+
+
+            <input
+              type="text"
+              class="form-control search-input guest-input"
+              [value]="getGuestText()"
+              placeholder="Add guests"
+              readonly
+              (click)="toggleGuestDropdown($event)">
+
+
+            <!-- GUEST DROPDOWN -->
+
+            <div
+              class="guest-dropdown"
+              *ngIf="showGuestDropdown"
+              (click)="$event.stopPropagation()">
+
+
+              <!-- ADULTS -->
+
+              <div class="guest-row">
+
+                <div>
+
+                  <h6>
+                    Adults
+                  </h6>
+
+                  <small>
+                    Ages 13+
+                  </small>
+
+                </div>
+
+
+                <div class="counter">
+
+                  <button
+                    type="button"
+                    (click)="decrease('adults')">
+
+                    −
+
+                  </button>
+
+                  <span>
+                    {{ adults }}
+                  </span>
+
+                  <button
+                    type="button"
+                    (click)="increase('adults')">
+
+                    +
+
+                  </button>
+
+                </div>
+
+              </div>
+
+
+              <!-- CHILDREN -->
+
+              <div class="guest-row">
+
+                <div>
+
+                  <h6>
+                    Children
+                  </h6>
+
+                  <small>
+                    Ages 2–12
+                  </small>
+
+                </div>
+
+
+                <div class="counter">
+
+                  <button
+                    type="button"
+                    (click)="decrease('children')">
+
+                    −
+
+                  </button>
+
+                  <span>
+                    {{ children }}
+                  </span>
+
+                  <button
+                    type="button"
+                    (click)="increase('children')">
+
+                    +
+
+                  </button>
+
+                </div>
+
+              </div>
+
+
+              <!-- INFANTS -->
+
+              <div class="guest-row">
+
+                <div>
+
+                  <h6>
+                    Infants
+                  </h6>
+
+                  <small>
+                    Under 2
+                  </small>
+
+                </div>
+
+
+                <div class="counter">
+
+                  <button
+                    type="button"
+                    (click)="decrease('infants')">
+
+                    −
+
+                  </button>
+
+                  <span>
+                    {{ infants }}
+                  </span>
+
+                  <button
+                    type="button"
+                    (click)="increase('infants')">
+
+                    +
+
+                  </button>
+
+                </div>
+
+              </div>
+
+
+              <!-- PETS -->
+
+              <div class="guest-row">
+
+                <div>
+
+                  <h6>
+                    Pets
+                  </h6>
+
+                  <small>
+                    Bringing a service animal?
+                  </small>
+
+                </div>
+
+
+                <div class="counter">
+
+                  <button
+                    type="button"
+                    (click)="decrease('pets')">
+
+                    −
+
+                  </button>
+
+                  <span>
+                    {{ pets }}
+                  </span>
+
+                  <button
+                    type="button"
+                    (click)="increase('pets')">
+
+                    +
+
+                  </button>
+
+                </div>
+
+              </div>
+
+
+            </div>
+
+
+          </div>
+
+
+          <!-- SEARCH BUTTON -->
+
+          <button
+            type="button"
+            class="search-btn-circle"
+            (click)="searchProperty()">
+
+            <i class="bi bi-search"></i>
+
+          </button>
+
+
+        </div>
+
+      </div>
+
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- POPULAR DESTINATIONS -->
+
+
+<div class="popular-section">
+
+  <h2>
+    Popular Stays
+  </h2>
+
+
+  <div class="destination-list">
+
+
+    <div
+      class="destination-card"
+      *ngFor="let place of popularDestinations"
+      (click)="viewProperty(place.propertyId)">
+
+
+      <img
+        [src]="place.image"
+        [alt]="place.name">
+
+
+      <div class="destination-info">
+
+        <h5>
+          {{ place.name }}
+        </h5>
+
+
+        <p>
+          📍 {{ place.location }}
+        </p>
+
+
+        <p>
+          {{ place.bookingCount }} bookings
+        </p>
+
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+</div>

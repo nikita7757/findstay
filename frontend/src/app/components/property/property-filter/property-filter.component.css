@@ -1,0 +1,190 @@
+* {
+    box-sizing: border-box;
+}
+
+
+/* FILTER CONTAINER */
+
+.filter-container {
+    width: 100%;
+
+    background: #ffffff;
+
+    border: 1px solid #dddddd;
+
+    border-radius: 16px;
+
+    padding: 25px;
+
+    box-shadow:
+        0 4px 18px rgba(0, 0, 0, 0.08);
+}
+
+
+/* FILTER HEADER */
+
+.filter-header {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 28px;
+}
+
+
+.filter-header h4 {
+    margin: 0;
+
+    font-size: 23px;
+
+    font-weight: 700;
+
+    color: #222222;
+}
+
+
+/* CLEAR BUTTON */
+
+.clear-btn {
+    border: none;
+
+    background: transparent;
+
+    color: #222222;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    text-decoration: underline;
+
+    cursor: pointer;
+
+    padding: 5px;
+}
+
+
+.clear-btn:hover {
+    color: #ff385c;
+}
+
+
+/* FILTER GROUP */
+
+.filter-group {
+    margin-bottom: 22px;
+}
+
+
+.filter-group label {
+    display: block;
+
+    margin-bottom: 8px;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    color: #222222;
+}
+
+
+/* SELECT */
+
+.form-select {
+    width: 100%;
+
+    height: 50px;
+
+    padding: 0 14px;
+
+    border: 1px solid #dddddd;
+
+    border-radius: 10px;
+
+    background: #ffffff;
+
+    color: #222222;
+
+    font-size: 15px;
+
+    font-family: inherit;
+
+    outline: none;
+
+    cursor: pointer;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.form-select:focus {
+    border-color: #ff385c;
+
+    box-shadow:
+        0 0 0 2px rgba(255, 56, 92, 0.12);
+}
+
+
+/* APPLY FILTER BUTTON */
+
+.apply-filter-btn {
+    width: 100%;
+
+    padding: 15px;
+
+    margin-top: 8px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: #ff385c;
+
+    color: #ffffff;
+
+    font-size: 16px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        transform 0.1s ease;
+}
+
+
+.apply-filter-btn:hover {
+    background: #e31c5f;
+}
+
+
+.apply-filter-btn:active {
+    transform: scale(0.98);
+}
+
+
+/* RESPONSIVE */
+
+@media (max-width: 750px) {
+
+    .filter-container {
+        padding: 20px;
+    }
+
+
+    .filter-header h4 {
+        font-size: 21px;
+    }
+
+
+    .form-select {
+        height: 48px;
+    }
+
+}

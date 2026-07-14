@@ -1,0 +1,540 @@
+<app-navbar></app-navbar>
+
+<div
+    class="property-details-container"
+    *ngIf="property">
+
+    <!-- PROPERTY HEADER -->
+
+    <div class="property-header">
+
+        <h1>
+            {{ property.title }}
+        </h1>
+
+        <button
+  type="button"
+  class="save-btn"
+  [class.saved]="isWishlisted"
+  [disabled]="wishlistLoading"
+  (click)="toggleWishlist()">
+
+  <span class="heart-icon">
+
+    {{
+      isWishlisted
+        ? '♥'
+        : '♡'
+    }}
+
+  </span>
+
+  {{
+    wishlistLoading
+      ? 'Please wait...'
+      : isWishlisted
+        ? 'Saved'
+        : 'Save'
+  }}
+
+</button>
+
+    </div>
+
+
+    <!-- PROPERTY IMAGE GALLERY -->
+
+    <div
+        class="gallery"
+        *ngIf="propertyImages.length > 0">
+
+        <div class="main-image">
+
+            <img
+                [src]="propertyImages[0].imageUrl"
+                [alt]="property.title">
+
+        </div>
+
+
+        <div class="small-images">
+
+            <img
+                *ngIf="propertyImages[1]"
+                [src]="propertyImages[1].imageUrl"
+                [alt]="property.title">
+
+            <img
+                *ngIf="propertyImages[2]"
+                [src]="propertyImages[2].imageUrl"
+                [alt]="property.title">
+
+            <img
+                *ngIf="propertyImages[3]"
+                [src]="propertyImages[3].imageUrl"
+                [alt]="property.title">
+
+
+            <div class="last-image">
+
+                <img
+                    *ngIf="propertyImages[4]"
+                    [src]="propertyImages[4].imageUrl"
+                    [alt]="property.title">
+
+                <button
+                    class="show-photos-btn"
+                    (click)="openPhotoTour()">
+
+                    ▦ Show all photos
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- NO PROPERTY IMAGES -->
+
+    <div
+        class="no-images"
+        *ngIf="propertyImages.length === 0">
+
+        <img
+            src="assets/property-placeholder.jpg"
+            [alt]="property.title">
+
+    </div>
+
+
+    <!-- PROPERTY CONTENT -->
+
+    <div class="property-content">
+
+
+        <!-- PROPERTY INFORMATION -->
+
+        <div class="property-info">
+
+            <h2>
+                Entire property in
+                {{ property.location }}
+            </h2>
+
+            <p class="property-summary">
+
+                {{ property.bedrooms }}
+                bedrooms
+
+                ·
+
+                {{ property.bathrooms }}
+                bathrooms
+
+            </p>
+
+            <hr>
+
+
+            <h3>
+                About this place
+            </h3>
+
+            <p class="description">
+                {{ property.description }}
+            </p>
+
+        </div>
+
+
+        <!-- RESERVE CARD -->
+
+        <div class="reserve-card">
+
+
+            <!-- PRICE -->
+
+            <div class="price-title">
+
+                <strong>
+
+                    ₹{{
+                        totalPrice ||
+                        property.pricePerNight
+                    }}
+
+                </strong>
+
+
+                <span *ngIf="numberOfNights > 0">
+
+                    for {{ numberOfNights }}
+                    nights
+
+                </span>
+
+
+                <span *ngIf="numberOfNights === 0">
+
+                    / night
+
+                </span>
+
+            </div>
+
+
+            <!-- BOOKING INPUTS -->
+
+            <div class="booking-inputs">
+
+
+                <!-- DATE ROW -->
+
+                <div
+                    class="date-row"
+                    (click)="openCalendar()">
+
+
+                    <!-- CHECK IN -->
+
+                    <div class="date-box">
+
+                        <label>
+                            CHECK-IN
+                        </label>
+
+                        <div class="selected-date">
+
+                            {{
+                                checkIn
+                                ? (
+                                    checkIn
+                                    | date:'M/d/yyyy'
+                                  )
+                                : 'Add date'
+                            }}
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- CHECK OUT -->
+
+                    <div class="date-box">
+
+                        <label>
+                            CHECKOUT
+                        </label>
+
+                        <div class="selected-date">
+
+                            {{
+                                checkOut
+                                ? (
+                                    checkOut
+                                    | date:'M/d/yyyy'
+                                  )
+                                : 'Add date'
+                            }}
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- GUESTS -->
+
+                <div class="guest-box">
+
+                    <label>
+                        GUESTS
+                    </label>
+
+                    <select [(ngModel)]="guests">
+
+                        <option [ngValue]="1">
+                            1 guest
+                        </option>
+
+                        <option [ngValue]="2">
+                            2 guests
+                        </option>
+
+                        <option [ngValue]="3">
+                            3 guests
+                        </option>
+
+                        <option [ngValue]="4">
+                            4 guests
+                        </option>
+
+                        <option [ngValue]="5">
+                            5 guests
+                        </option>
+
+                        <option [ngValue]="6">
+                            6 guests
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <!-- RESERVE BUTTON -->
+
+            <button
+                class="reserve-card-btn"
+                (click)="reserveProperty()">
+
+                Reserve
+
+            </button>
+
+
+            <p class="charge-message">
+
+                You won't be charged yet
+
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- LOADING -->
+
+<div *ngIf="!property">
+
+    Loading property...
+
+</div>
+
+
+
+<!-- PHOTO TOUR -->
+
+<div
+    class="photo-tour-overlay"
+    *ngIf="showPhotoTour">
+
+
+    <div class="photo-tour-header">
+
+        <button
+            class="close-btn"
+            (click)="closePhotoTour()">
+
+            ✕
+
+        </button>
+
+        <h2>
+            Photo tour
+        </h2>
+
+    </div>
+
+
+    <div class="photo-tour-content">
+
+
+        <div
+            class="tour-section"
+            *ngFor="let section of imageSections">
+
+
+            <!-- SECTION NAME -->
+
+            <div class="section-info">
+
+                <h1>
+                    {{ section.sectionName }}
+                </h1>
+
+            </div>
+
+
+            <!-- SECTION IMAGES -->
+
+            <div class="section-gallery">
+
+                <img
+                    *ngFor="let image of section.images"
+                    [src]="image.imageUrl"
+                    [alt]="section.sectionName">
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- BOOKING CALENDAR -->
+
+<div
+    class="calendar-overlay"
+    *ngIf="showCalendar"
+    (click)="closeCalendar()">
+
+
+    <div
+        class="calendar-modal"
+        (click)="$event.stopPropagation()">
+
+
+        <!-- CALENDAR HEADER -->
+
+        <div class="calendar-top">
+
+
+            <!-- NIGHT INFORMATION -->
+
+            <div class="night-info">
+
+                <h2>
+
+                    {{
+                        numberOfNights > 0
+                        ? numberOfNights + ' nights'
+                        : 'Select dates'
+                    }}
+
+                </h2>
+
+
+                <p>
+
+                    <ng-container
+                        *ngIf="checkIn && checkOut">
+
+                        {{
+                            checkIn
+                            | date:'dd MMM yyyy'
+                        }}
+
+                        -
+
+                        {{
+                            checkOut
+                            | date:'dd MMM yyyy'
+                        }}
+
+                    </ng-container>
+
+
+                    <ng-container
+                        *ngIf="!checkIn || !checkOut">
+
+                        Add your travel dates
+
+                    </ng-container>
+
+                </p>
+
+            </div>
+
+
+            <!-- SELECTED DATES -->
+
+            <div class="calendar-date-inputs">
+
+
+                <!-- CHECK IN -->
+
+                <div class="calendar-date-box">
+
+                    <label>
+                        CHECK-IN
+                    </label>
+
+                    <span>
+
+                        {{
+                            checkIn
+                            ? (
+                                checkIn
+                                | date:'M/d/yyyy'
+                              )
+                            : 'Add date'
+                        }}
+
+                    </span>
+
+                </div>
+
+
+                <!-- CHECK OUT -->
+
+                <div class="calendar-date-box">
+
+                    <label>
+                        CHECKOUT
+                    </label>
+
+                    <span>
+
+                        {{
+                            checkOut
+                            ? (
+                                checkOut
+                                | date:'M/d/yyyy'
+                              )
+                            : 'Add date'
+                        }}
+
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- FLATPICKR CALENDAR -->
+
+        <div id="booking-calendar"></div>
+
+
+        <!-- CALENDAR FOOTER -->
+
+        <div class="calendar-footer">
+
+            <button
+                class="clear-date-btn"
+                (click)="clearDates()">
+
+                Clear dates
+
+            </button>
+
+
+            <button
+                class="close-calendar-btn"
+                (click)="closeCalendar()">
+
+                Close
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>

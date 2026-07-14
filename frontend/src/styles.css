@@ -1,0 +1,77 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+/*calender css*/
+
+/* Calendar container */
+.flatpickr-calendar {
+    border: none !important;
+    border-radius: 20px !important;
+    box-shadow: 0 15px 40px rgba(0,0,0,.15) !important;
+    padding: 10px;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Month title */
+.flatpickr-current-month {
+    font-size: 18px !important;
+    font-weight: 600;
+}
+
+/* Weekday names */
+.flatpickr-weekdays {
+    margin-bottom: 10px;
+}
+
+.flatpickr-weekday {
+    color: #555 !important;
+    font-weight: 600;
+}
+
+/* Day cells */
+.flatpickr-day {
+  
+    transition: all .2s ease;
+}
+
+/* Hover */
+.flatpickr-day:hover {
+    background: #ffe5eb !important;
+    color:black ;
+}
+
+/* Selected date */
+.flatpickr-day.selected,
+.flatpickr-day.startRange,
+.flatpickr-day.endRange {
+    background: black !important;
+    color: white !important;
+    border-radius: 50% !important;
+}
+
+/* Days between start & end */
+.flatpickr-day.inRange {
+    color: black !important;
+}
+
+/* Navigation arrows */
+.flatpickr-prev-month,
+.flatpickr-next-month {
+    fill: #444 !important;
+}
+
+.flatpickr-prev-month:hover svg,
+.flatpickr-next-month:hover svg {
+    fill: black !important;
+}
+
+.flatpickr-day.today {
+    background: black !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 50% !important;
+}
+

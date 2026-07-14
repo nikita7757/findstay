@@ -1,0 +1,222 @@
+<app-navbar></app-navbar>
+
+
+<div class="my-bookings-page">
+
+
+    <div class="bookings-container">
+
+
+        <div class="page-header">
+
+            <h1>
+                My Bookings
+            </h1>
+
+            <p>
+                View and manage your booked stays
+            </p>
+
+        </div>
+
+
+        <div
+            class="loading"
+            *ngIf="loading">
+
+            Loading your bookings...
+
+        </div>
+
+
+        <div
+            class="empty-state"
+            *ngIf="
+                !loading &&
+                bookings.length === 0
+            ">
+
+            <div class="empty-icon">
+                🧳
+            </div>
+
+            <h2>
+                No bookings yet
+            </h2>
+
+            <p>
+                Start exploring properties and book your next stay.
+            </p>
+
+            <button routerLink="/home">
+
+                Explore Properties
+
+            </button>
+
+        </div>
+
+
+        <div
+            class="booking-list"
+            *ngIf="
+                !loading &&
+                bookings.length > 0
+            ">
+
+
+            <div
+                class="booking-card"
+                *ngFor="let booking of bookings">
+
+
+                <img
+                [src]="
+                    booking.imageUrl ||
+                    'assets/property-placeholder.jpg'
+                "
+                [alt]="booking.property.title">
+
+
+                <div class="booking-content">
+
+
+                    <div class="booking-header">
+
+                        <div>
+
+                            <h2>
+                                {{ booking.property.title }}
+                            </h2>
+
+                            <p class="location">
+
+                                📍
+                                {{ booking.property.location }}
+
+                            </p>
+
+                        </div>
+
+
+                        <span
+                            class="booking-status"
+                            [class.cancelled]="
+                                booking.status === 'CANCELLED'
+                            ">
+
+                            {{ booking.status }}
+
+                        </span>
+
+                    </div>
+
+
+                    <div class="booking-details">
+
+
+                        <div class="detail">
+
+                            <span class="detail-label">
+                                Check In
+                            </span>
+
+                            <strong>
+                                {{ booking.checkInDate }}
+                            </strong>
+
+                        </div>
+
+
+                        <div class="detail">
+
+                            <span class="detail-label">
+                                Check Out
+                            </span>
+
+                            <strong>
+                                {{ booking.checkOutDate }}
+                            </strong>
+
+                        </div>
+
+
+                        <div class="detail">
+
+                            <span class="detail-label">
+                                Guests
+                            </span>
+
+                            <strong>
+                                {{ booking.guests }}
+                            </strong>
+
+                        </div>
+
+
+                        <div class="detail">
+
+                            <span class="detail-label">
+                                Total Price
+                            </span>
+
+                            <strong class="price">
+
+                                ₹{{ booking.totalPrice }}
+
+                            </strong>
+
+                        </div>
+
+
+                    </div>
+
+
+                    <div class="booking-actions">
+
+
+                        <button
+                            class="view-btn"
+                            (click)="
+                                viewProperty(
+                                    booking.property.id
+                                )
+                            ">
+
+                            View Property
+
+                        </button>
+
+
+                        <button
+                            class="cancel-btn"
+                            *ngIf="
+                                booking.status === 'CONFIRMED'
+                            "
+                            (click)="
+                                cancelBooking(
+                                    booking.id
+                                )
+                            ">
+
+                            Cancel Booking
+
+                        </button>
+
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+</div>

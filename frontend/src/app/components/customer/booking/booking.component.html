@@ -1,0 +1,207 @@
+<app-navbar></app-navbar>
+
+
+<div
+    class="loading"
+    *ngIf="loading">
+
+    Loading booking details...
+
+</div>
+
+
+<div
+    class="booking-container"
+    *ngIf="!loading && property">
+
+
+    <!-- LEFT SIDE -->
+
+    <div class="payment-section">
+
+
+        <button
+            class="back-btn"
+            (click)="goBack()">
+
+            ← Back
+
+        </button>
+
+
+        <h1>
+            Confirm and Pay
+        </h1>
+
+
+     <h3>Confirm your booking</h3>
+
+<p>
+    Review your booking details before confirming your stay.
+</p>
+
+
+        <hr>
+
+
+        <p class="terms">
+             By clicking confirm, you agree to our booking terms.
+            </p>
+
+
+            <button
+                class="pay-btn"
+                (click)="confirmBooking()">
+
+                Confirm Booking
+
+            </button>
+
+
+    </div>
+
+
+
+    <!-- RIGHT SIDE -->
+
+    <div class="summary-section">
+
+
+        <div class="property-card">
+
+
+            <img
+                src="assets/property-placeholder.jpg"
+                [alt]="property.title">
+
+
+            <div class="property-info">
+
+
+                <h4>
+                    {{ property.title }}
+                </h4>
+
+
+                <p>
+                    📍 {{ property.location }}
+                </p>
+
+
+            </div>
+
+
+        </div>
+
+
+        <hr>
+
+
+        <h4>
+            Booking Details
+        </h4>
+
+
+        <p>
+
+            <strong>
+                Check In:
+            </strong>
+
+            {{
+                checkIn
+                | date:'dd MMM yyyy'
+            }}
+
+        </p>
+
+
+        <p>
+
+            <strong>
+                Check Out:
+            </strong>
+
+            {{
+                checkOut
+                | date:'dd MMM yyyy'
+            }}
+
+        </p>
+
+
+        <p>
+
+            <strong>
+                Guests:
+            </strong>
+
+            {{ guests }}
+
+        </p>
+
+
+        <hr>
+
+
+        <h4>
+            Price Details
+        </h4>
+
+
+        <div class="price-row">
+
+            <span>
+
+                ₹{{ property.pricePerNight }}
+                ×
+                {{ nights }}
+                nights
+
+            </span>
+
+
+            <span>
+
+                ₹ {{ subtotal }}
+
+            </span>
+
+        </div>
+
+
+        <div class="price-row">
+
+            <span>
+                Taxes
+            </span>
+
+
+            <span>
+                ₹ {{ tax }}
+            </span>
+
+        </div>
+
+
+        <hr>
+
+
+        <div class="price-row total">
+
+            <span>
+                Total
+            </span>
+
+
+            <span>
+                ₹ {{ total }}
+            </span>
+
+        </div>
+
+
+    </div>
+
+
+</div>

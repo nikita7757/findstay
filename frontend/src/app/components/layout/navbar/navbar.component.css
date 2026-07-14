@@ -1,0 +1,446 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+.header {
+    height: 82px;
+
+    background: #ffffff;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 0 45px;
+
+    border-bottom: 1px solid #ececec;
+
+    position: relative;
+
+    z-index: 1000;
+}
+
+
+/* LOGO */
+
+.logo {
+    cursor: pointer;
+}
+
+
+.logo img {
+    width: 110px;
+
+    display: block;
+}
+
+
+/* CENTER NAVIGATION */
+
+.nav-menu {
+    display: flex;
+
+    align-items: center;
+
+    gap: 45px;
+}
+
+
+.nav-item {
+    display: flex;
+
+    align-items: center;
+
+    flex-direction: column;
+
+    gap: 8px;
+
+    color: #6b6b6b;
+
+    cursor: pointer;
+
+    font-size: 16px;
+
+    font-weight: 500;
+
+    padding-bottom: 12px;
+
+    transition: 0.3s;
+}
+
+
+.nav-item i {
+    font-size: 28px;
+}
+
+
+.nav-item:hover {
+    color: #000000;
+}
+
+
+.nav-item.active {
+    color: #000000;
+
+    border-bottom: 3px solid #000000;
+}
+
+
+/* RIGHT MENU */
+
+.right-menu {
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+}
+
+
+.right-menu > a {
+    color: #222222;
+
+    font-size: 15px;
+
+    font-weight: 600;
+
+    text-decoration: none;
+
+    cursor: pointer;
+
+    padding: 12px 15px;
+
+    border-radius: 25px;
+}
+
+
+.right-menu > a:hover {
+    background: #f7f7f7;
+}
+
+
+/* ICON BUTTON */
+
+.icon-btn {
+    width: 42px;
+
+    height: 42px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: transparent;
+
+    color: #222222;
+
+    font-size: 21px;
+
+    cursor: pointer;
+}
+
+
+.icon-btn:hover {
+    background: #f2f2f2;
+}
+
+
+.globe-btn {
+    font-size: 20px;
+}
+
+
+.menu-btn {
+    font-size: 25px;
+}
+
+
+/* PROFILE MENU */
+
+.profile-menu-container {
+    position: relative;
+}
+
+
+.profile-dropdown {
+    position: absolute;
+
+    top: 55px;
+
+    right: 0;
+
+    width: 245px;
+
+    background: #ffffff;
+
+    border: 1px solid #dddddd;
+
+    border-radius: 14px;
+
+    padding: 8px 0;
+
+    box-shadow:
+        0 8px 28px rgba(0, 0, 0, 0.18);
+
+    overflow: hidden;
+
+    z-index: 9999;
+}
+
+
+/* MENU ITEM */
+
+.menu-item {
+    width: 100%;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 13px;
+
+    padding: 14px 18px;
+
+    color: #222222;
+
+    font-size: 15px;
+
+    font-weight: 500;
+
+    cursor: pointer;
+
+    transition: background 0.2s;
+}
+
+
+.menu-item:hover {
+    background: #f7f7f7;
+}
+
+
+.menu-icon {
+    width: 25px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 18px;
+}
+
+
+.menu-divider {
+    height: 1px;
+
+    background: #eeeeee;
+
+    margin: 6px 0;
+}
+
+
+.logout-item {
+    color: #d93025;
+}
+
+
+/* RESPONSIVE */
+
+@media (max-width: 900px) {
+
+    .header {
+        padding: 0 20px;
+    }
+
+
+    .nav-menu {
+        gap: 25px;
+    }
+
+
+    .right-menu > a {
+        display: none;
+    }
+
+}
+
+
+@media (max-width: 650px) {
+
+    .nav-menu {
+        display: none;
+    }
+
+
+    .logo img {
+        width: 95px;
+    }
+
+
+    .profile-dropdown {
+        width: 220px;
+    }
+
+}
+/* WISHLIST BUTTON */
+
+.wishlist-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 7px;
+
+  padding: 11px 16px;
+
+  border: none;
+  border-radius: 22px;
+
+  background: transparent;
+  color: #222;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  white-space: nowrap;
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+
+.wishlist-btn:hover {
+  background: #f7f7f7;
+
+  transform: translateY(-1px);
+}
+
+
+.wishlist-btn:active {
+  transform: translateY(0);
+}
+
+
+/* RIGHT NAVBAR MENU */
+
+.right-menu {
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+}
+
+
+/* PROFILE MENU */
+
+.profile-menu-container {
+  position: relative;
+}
+
+
+.menu-btn {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 44px;
+  height: 44px;
+
+  border: 1px solid #dddddd;
+  border-radius: 50%;
+
+  background: white;
+
+  color: #222;
+
+  font-size: 20px;
+
+  cursor: pointer;
+}
+
+
+.menu-btn:hover {
+  box-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+
+/* PROFILE DROPDOWN */
+
+.profile-dropdown {
+  position: absolute;
+
+  top: 55px;
+  right: 0;
+
+  width: 220px;
+
+  padding: 8px 0;
+
+  background: white;
+
+  border: 1px solid #eeeeee;
+  border-radius: 12px;
+
+  box-shadow:
+    0 8px 28px rgba(0, 0, 0, 0.16);
+
+  z-index: 1000;
+}
+
+
+.menu-item {
+  padding: 14px 18px;
+
+  color: #222;
+
+  font-size: 15px;
+  font-weight: 500;
+
+  cursor: pointer;
+
+  transition: background 0.2s ease;
+}
+
+
+.menu-item:hover {
+  background: #f7f7f7;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 750px) {
+
+  .wishlist-btn {
+    padding: 10px;
+
+    font-size: 0;
+  }
+
+
+  .wishlist-btn::first-letter {
+    font-size: 18px;
+  }
+
+
+  .profile-dropdown {
+    width: 210px;
+  }
+
+}

@@ -1,0 +1,193 @@
+<app-navbar></app-navbar>
+
+<div class="my-properties-page">
+
+    <div class="page-header">
+
+        <div>
+            <h1>My Properties</h1>
+
+            <p>
+                Manage properties listed by you
+            </p>
+        </div>
+
+        <button
+            class="add-property-btn"
+            routerLink="/add-property">
+
+            + Add Property
+
+        </button>
+
+    </div>
+
+
+    <!-- LOADING -->
+
+    <div
+        class="loading"
+        *ngIf="loading">
+
+        Loading properties...
+
+    </div>
+
+
+    <!-- EMPTY STATE -->
+
+    <div
+        class="empty-state"
+        *ngIf="!loading && properties.length === 0">
+
+        <div class="empty-icon">
+            🏠
+        </div>
+
+        <h2>
+            No properties listed yet
+        </h2>
+
+        <p>
+            Add your first property and start hosting.
+        </p>
+
+        <button routerLink="/add-property">
+            Add Property
+        </button>
+
+    </div>
+
+
+    <!-- PROPERTY GRID -->
+
+    <div
+        class="property-grid"
+        *ngIf="!loading && properties.length > 0">
+
+
+        <div
+            class="property-card"
+            *ngFor="let property of properties">
+
+
+            <!-- PROPERTY IMAGE -->
+
+            <div class="property-image">
+
+                <img
+                    [src]="
+                        property.imageUrl ||
+                        'assets/property-placeholder.jpg'
+                    "
+                    [alt]="property.title">
+
+
+                <span
+                    class="availability"
+                    [class.unavailable]="!property.available">
+
+                    {{
+                        property.available
+                        ? 'Available'
+                        : 'Unavailable'
+                    }}
+
+                </span>
+
+            </div>
+
+
+            <!-- PROPERTY INFORMATION -->
+
+            <div class="property-content">
+
+
+                <h3>
+                    {{ property.title }}
+                </h3>
+
+
+                <p class="location">
+
+                    📍 {{ property.location }}
+
+                </p>
+
+
+                <div class="property-details">
+
+                    <span>
+
+                        {{ property.bedrooms }}
+                        Bedrooms
+
+                    </span>
+
+
+                    <span>
+
+                        {{ property.bathrooms }}
+                        Bathrooms
+
+                    </span>
+
+                </div>
+
+
+                <div class="price">
+
+                    <strong>
+
+                        ₹{{ property.pricePerNight }}
+
+                    </strong>
+
+                    <span>
+                        / night
+                    </span>
+
+                </div>
+
+
+                <!-- ACTION BUTTONS -->
+
+                <div class="property-actions">
+
+
+                    <button
+                        type="button"
+                        class="view-btn"
+                        [routerLink]="[
+                            '/property',
+                            property.id
+                        ]">
+
+                        View
+
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="edit-btn"
+                        [routerLink]="[
+                            '/edit-property',
+                            property.id
+                        ]">
+
+                        Edit
+
+                    </button>
+
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

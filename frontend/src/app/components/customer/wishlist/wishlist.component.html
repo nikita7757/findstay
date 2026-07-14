@@ -1,0 +1,255 @@
+<app-navbar></app-navbar>
+
+
+<div class="wishlist-page">
+
+
+  <div class="wishlist-container">
+
+
+    <div class="wishlist-header">
+
+      <div>
+
+        <h1>
+          My Wishlist
+        </h1>
+
+
+        <p *ngIf="!loading">
+
+          {{ wishlistItems.length }}
+
+          {{
+            wishlistItems.length === 1
+              ? 'saved property'
+              : 'saved properties'
+          }}
+
+        </p>
+
+      </div>
+
+    </div>
+
+
+
+    <!-- LOADING -->
+
+    <div
+      class="loading-state"
+      *ngIf="loading">
+
+      <div class="loader"></div>
+
+      <p>
+        Loading your wishlist...
+      </p>
+
+    </div>
+
+
+
+    <!-- EMPTY WISHLIST -->
+
+    <div
+      class="empty-wishlist"
+      *ngIf="
+        !loading &&
+        wishlistItems.length === 0
+      ">
+
+
+      <div class="empty-heart">
+        ♡
+      </div>
+
+
+      <h2>
+        Your wishlist is empty
+      </h2>
+
+
+      <p>
+        Save properties you love and
+        they will appear here.
+      </p>
+
+
+      <button
+        type="button"
+        (click)="exploreProperties()">
+
+        Explore Properties
+
+      </button>
+
+
+    </div>
+
+
+
+    <!-- WISHLIST CARDS -->
+
+    <div
+      class="wishlist-grid"
+      *ngIf="
+        !loading &&
+        wishlistItems.length > 0
+      ">
+
+
+      <div
+        class="wishlist-card"
+        *ngFor="
+          let item of wishlistItems
+        "
+        (click)="
+          viewProperty(
+            item.property.id
+          )
+        ">
+
+
+        <div class="image-container">
+
+
+          <img
+            [src]="item.imageUrl"
+            [alt]="item.property.title">
+
+
+          <button
+            type="button"
+            class="wishlist-heart-btn"
+            [disabled]="
+              removingPropertyId ===
+              item.property.id
+            "
+            (click)="
+              removeFromWishlist(
+                $event,
+                item.property.id
+              )
+            ">
+
+            ♥
+
+          </button>
+
+
+          <span
+            class="availability-badge"
+            [class.unavailable]="
+              !item.property.available
+            ">
+
+            {{
+              item.property.available
+                ? 'Available'
+                : 'Unavailable'
+            }}
+
+          </span>
+
+
+        </div>
+
+
+
+        <div class="card-content">
+
+
+          <p class="property-location">
+
+            📍
+            {{ item.property.location }}
+
+          </p>
+
+
+          <h3>
+
+            {{ item.property.title }}
+
+          </h3>
+
+
+          <p class="property-description">
+
+            {{ item.property.description }}
+
+          </p>
+
+
+
+          <div class="property-features">
+
+
+            <span>
+
+              🛏
+              {{ item.property.bedrooms }}
+              Bedrooms
+
+            </span>
+
+
+            <span>
+
+              🚿
+              {{ item.property.bathrooms }}
+              Bathrooms
+
+            </span>
+
+
+          </div>
+
+
+
+          <div class="card-footer">
+
+
+            <div class="price">
+
+              <strong>
+
+                ₹{{
+                  item.property.pricePerNight
+                }}
+
+              </strong>
+
+              <span>
+                / night
+              </span>
+
+            </div>
+
+
+            <button
+              type="button"
+              class="view-btn">
+
+              View Property
+
+            </button>
+
+
+          </div>
+
+
+        </div>
+
+
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+</div>

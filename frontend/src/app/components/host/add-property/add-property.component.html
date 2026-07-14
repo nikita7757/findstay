@@ -1,0 +1,250 @@
+<app-navbar></app-navbar>
+
+<div class="add-property-page">
+
+    <div class="form-container">
+
+        <div class="form-header">
+            <h1>Add New Property</h1>
+            <p>List your property and add photos for each area</p>
+        </div>
+
+        <form (ngSubmit)="addProperty()">
+
+            <!-- BASIC DETAILS -->
+
+            <div class="section-heading">
+                <h2>Property Details</h2>
+            </div>
+
+            <div class="form-group">
+                <label>Property Title</label>
+
+                <input
+                    type="text"
+                    name="title"
+                    [(ngModel)]="property.title"
+                    placeholder="Enter property title"
+                    required>
+            </div>
+
+            <div class="form-group">
+                <label>Description</label>
+
+                <textarea
+                    name="description"
+                    [(ngModel)]="property.description"
+                    placeholder="Describe your property"
+                    rows="5"
+                    required>
+                </textarea>
+            </div>
+
+            <div class="form-group">
+                <label>Location</label>
+
+                <input
+                    type="text"
+                    name="location"
+                    [(ngModel)]="property.location"
+                    placeholder="Enter property location"
+                    required>
+            </div>
+            <div class="form-group">
+
+                <label>Property Category</label>
+
+                <select
+                    name="category"
+                    [(ngModel)]="selectedCategoryId"
+                    required>
+
+                    <option [ngValue]="null">
+                        Select property category
+                    </option>
+
+                    <option
+                        *ngFor="let category of categories"
+                        [ngValue]="category.id">
+
+                        {{ category.title }}
+
+                    </option>
+
+                </select>
+
+            </div>
+            <div class="form-row">
+
+                <div class="form-group">
+                    <label>Price Per Night</label>
+
+                    <input
+                        type="number"
+                        name="pricePerNight"
+                        [(ngModel)]="property.pricePerNight"
+                        placeholder="₹ Price"
+                        required>
+                </div>
+
+                <div class="form-group">
+                    <label>Bedrooms</label>
+
+                    <input
+                        type="number"
+                        name="bedrooms"
+                        [(ngModel)]="property.bedrooms"
+                        min="1"
+                        required>
+                </div>
+
+                <div class="form-group">
+                    <label>Bathrooms</label>
+
+                    <input
+                        type="number"
+                        name="bathrooms"
+                        [(ngModel)]="property.bathrooms"
+                        min="1"
+                        required>
+                </div>
+
+            </div>
+
+            <div class="availability">
+
+                <input
+                    type="checkbox"
+                    name="available"
+                    [(ngModel)]="property.available">
+
+                <label>Property Available for Booking</label>
+
+            </div>
+
+
+            <!-- PROPERTY PHOTOS -->
+
+            <div class="photos-container">
+
+                <div class="section-heading">
+                    <h2>Property Photos</h2>
+                    <p>Add photos for each area of your property</p>
+                </div>
+
+                <div
+                    class="photo-section"
+                    *ngFor="let section of photoSections; let sectionIndex = index">
+
+                    <div class="photo-section-header">
+
+                        <h3>{{ section.sectionName }}</h3>
+
+                        <button
+                            type="button"
+                            class="remove-section-btn"
+                            (click)="removeSection(sectionIndex)">
+
+                            Remove Section
+
+                        </button>
+
+                    </div>
+
+
+                    <!-- IMAGE PREVIEW -->
+
+                    <div
+                        class="photo-grid"
+                        *ngIf="section.imageUrls.length > 0">
+
+                        <div
+                            class="photo-preview"
+                            *ngFor="let image of section.imageUrls; let i = index">
+
+                            <img
+                                [src]="image"
+                                [alt]="section.sectionName">
+
+                            <button
+                                type="button"
+                                class="remove-image-btn"
+                                (click)="removeImage(section, i)">
+
+                                ×
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- ADD IMAGE -->
+
+                    <div class="image-add-box">
+
+                        <input
+                            type="text"
+                            [name]="'imageUrl-' + sectionIndex"
+                            [(ngModel)]="section.newImageUrl"
+                            placeholder="Paste image URL">
+
+                        <button
+                            type="button"
+                            class="add-photo-btn"
+                            (click)="addImage(section)">
+
+                            + Add Photo
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ADD CUSTOM SECTION -->
+
+                <div class="custom-section-box">
+
+                    <div>
+                        <h3>Add Another Area</h3>
+
+                        <p>
+                            Example: Balcony, Pool, Garden or Terrace
+                        </p>
+                    </div>
+
+                    <div class="custom-section-input">
+
+                        <input
+                            type="text"
+                            name="newSectionName"
+                            [(ngModel)]="newSectionName"
+                            placeholder="Enter area name">
+
+                        <button
+                            type="button"
+                            (click)="addSection()">
+
+                            + Add Section
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <button type="submit" class="submit-btn">
+                Add Property
+            </button>
+
+        </form>
+
+    </div>
+
+</div>

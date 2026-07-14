@@ -1,0 +1,187 @@
+.my-properties-page {
+    min-height: 100vh;
+    background: #fafafa;
+    padding: 45px 65px;
+}
+
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.page-header h1 {
+    font-size: 34px;
+    font-weight: 700;
+    color: #222;
+    margin-bottom: 5px;
+}
+
+.page-header p {
+    color: #717171;
+    margin: 0;
+}
+
+.add-property-btn {
+    background: #ff385c;
+    color: white;
+    border: none;
+    padding: 13px 22px;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.property-grid {
+    display: grid;
+    grid-template-columns:
+        repeat(auto-fill, minmax(280px, 1fr));
+    gap: 25px;
+}
+
+.property-card {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    border: 1px solid #e8e8e8;
+    transition: 0.3s;
+}
+
+.property-card:hover {
+    transform: translateY(-4px);
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.property-image {
+    height: 210px;
+    position: relative;
+}
+
+.property-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.availability {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background: white;
+    color: #16883e;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.availability.unavailable {
+    color: #d11a2a;
+}
+
+.property-content {
+    padding: 20px;
+}
+
+.property-content h3 {
+    font-size: 20px;
+    font-weight: 650;
+    margin-bottom: 8px;
+}
+
+.location {
+    color: #717171;
+}
+
+.property-details {
+    display: flex;
+    gap: 18px;
+    color: #555;
+    font-size: 14px;
+    margin: 15px 0;
+}
+
+.price {
+    margin-bottom: 20px;
+}
+
+.price strong {
+    font-size: 20px;
+}
+
+.price span {
+    color: #717171;
+}
+
+.property-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.property-actions button {
+    flex: 1;
+    padding: 10px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.view-btn {
+    background: white;
+    border: 1px solid #222;
+}
+
+.edit-btn {
+    background: #ff385c;
+    color: white;
+    border: none;
+}
+
+.loading {
+    text-align: center;
+    padding: 60px;
+}
+
+.empty-state {
+    text-align: center;
+    background: white;
+    padding: 70px;
+    border-radius: 15px;
+}
+
+.empty-icon {
+    font-size: 55px;
+}
+
+.empty-state h2 {
+    margin-top: 15px;
+}
+
+.empty-state p {
+    color: #717171;
+}
+
+.empty-state button {
+    margin-top: 15px;
+    background: #ff385c;
+    color: white;
+    border: none;
+    padding: 12px 22px;
+    border-radius: 9px;
+}
+
+@media (max-width: 700px) {
+
+    .my-properties-page {
+        padding: 30px 20px;
+    }
+
+    .page-header {
+        align-items: flex-start;
+        gap: 20px;
+        flex-direction: column;
+    }
+
+}

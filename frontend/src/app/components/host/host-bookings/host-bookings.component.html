@@ -1,0 +1,273 @@
+<app-navbar></app-navbar>
+
+<div class="host-bookings-page">
+
+    <div class="bookings-container">
+
+        <!-- PAGE HEADER -->
+
+        <div class="page-header">
+
+            <div>
+                <h1>Reservations</h1>
+
+                <p>
+                    View and manage bookings received for your properties
+                </p>
+            </div>
+
+            <button
+                type="button"
+                class="properties-btn"
+                routerLink="/my-properties">
+
+                My Properties
+
+            </button>
+
+        </div>
+
+
+        <!-- LOADING -->
+
+        <div
+            class="loading"
+            *ngIf="loading">
+
+            <div class="spinner"></div>
+
+            <p>
+                Loading reservations...
+            </p>
+
+        </div>
+
+
+        <!-- EMPTY STATE -->
+
+        <div
+            class="empty-state"
+            *ngIf="
+                !loading &&
+                bookings.length === 0
+            ">
+
+            <div class="empty-icon">
+                📋
+            </div>
+
+            <h2>
+                No reservations yet
+            </h2>
+
+            <p>
+                Bookings made for your properties will appear here.
+            </p>
+
+            <button
+                type="button"
+                routerLink="/my-properties">
+
+                View My Properties
+
+            </button>
+
+        </div>
+
+
+        <!-- BOOKING LIST -->
+
+        <div
+            class="booking-list"
+            *ngIf="
+                !loading &&
+                bookings.length > 0
+            ">
+
+
+            <div
+                class="booking-card"
+                *ngFor="let booking of bookings">
+
+
+                <!-- PROPERTY IMAGE -->
+
+                <div
+                    class="property-image"
+                    (click)="viewProperty(booking.property.id)">
+
+                    <img
+                        [src]="
+                            booking.imageUrl ||
+                            'assets/property-placeholder.jpg'
+                        "
+                        [alt]="booking.property.title">
+
+                </div>
+
+
+                <!-- BOOKING CONTENT -->
+
+                <div class="booking-content">
+
+
+                    <!-- HEADER -->
+
+                    <div class="booking-header">
+
+                        <div>
+
+                            <p class="reservation-label">
+                                Reservation #{{ booking.id }}
+                            </p>
+
+                            <h2>
+                                {{ booking.property.title }}
+                            </h2>
+
+                            <p class="location">
+                                📍 {{ booking.property.location }}
+                            </p>
+
+                        </div>
+
+
+                        <span
+                            class="booking-status"
+                            [class.cancelled]="
+                                booking.status === 'CANCELLED'
+                            "
+                            [class.pending]="
+                                booking.status === 'PENDING'
+                            ">
+
+                            {{ booking.status }}
+
+                        </span>
+
+                    </div>
+
+
+                    <!-- GUEST INFORMATION -->
+
+                    <div class="guest-section">
+
+                        <div class="guest-avatar">
+
+                            {{
+                                getGuestInitial(
+                                    booking.user.name
+                                )
+                            }}
+
+                        </div>
+
+
+                        <div class="guest-info">
+
+                            <span class="section-label">
+                                Guest
+                            </span>
+
+                            <h3>
+                                {{ booking.user.name }}
+                            </h3>
+
+                            <p>
+                                {{ booking.user.email }}
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- BOOKING DETAILS -->
+
+                    <div class="booking-details">
+
+
+                        <div class="detail">
+
+                            <span class="detail-label">
+                                Check In
+                            </span>
+
+                            <strong>
+                                {{ booking.checkInDate }}
+                            </strong>
+
+                        </div>
+
+
+                        <div class="detail">
+
+                            <span class="detail-label">
+                                Check Out
+                            </span>
+
+                            <strong>
+                                {{ booking.checkOutDate }}
+                            </strong>
+
+                        </div>
+
+
+                        <div class="detail">
+
+                            <span class="detail-label">
+                                Guests
+                            </span>
+
+                            <strong>
+                                {{ booking.guests }}
+                            </strong>
+
+                        </div>
+
+
+                        <div class="detail">
+
+                            <span class="detail-label">
+                                Earnings
+                            </span>
+
+                            <strong class="price">
+                                ₹{{ booking.totalPrice }}
+                            </strong>
+
+                        </div>
+
+
+                    </div>
+
+
+                    <!-- ACTIONS -->
+
+                    <div class="booking-actions">
+
+                        <button
+                            type="button"
+                            class="view-btn"
+                            (click)="
+                                viewProperty(
+                                    booking.property.id
+                                )
+                            ">
+
+                            View Property
+
+                        </button>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

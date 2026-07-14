@@ -1,0 +1,60 @@
+<div
+    class="property-card"
+    [routerLink]="['/property', property.id]">
+
+    <div class="property-image">
+
+        <img
+            [src]="propertyImage"
+            [alt]="property.title">
+
+        <div class="favorite">
+            ❤
+        </div>
+
+    </div>
+
+    <div class="property-info">
+
+        <div class="top-row">
+
+            <div class="title">
+                {{ property.title }}
+            </div>
+
+            <div class="rating">
+                ⭐ 4.8
+            </div>
+
+        </div>
+
+        <div class="location">
+            📍 {{ property.location }}
+        </div>
+
+        <div class="description">
+            {{ property.description }}
+        </div>
+
+        <div class="details">
+
+            🛏 {{ property.bedrooms }} Bedrooms
+            •
+
+            🛁 {{ property.bathrooms }} Bathrooms
+
+        </div>
+
+        <div class="price">
+
+            <strong>
+                ₹ {{ property.pricePerNight }}
+            </strong>
+
+            / night
+
+        </div>
+
+    </div>
+
+</div>

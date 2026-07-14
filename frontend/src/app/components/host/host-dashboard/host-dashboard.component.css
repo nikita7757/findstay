@@ -1,0 +1,141 @@
+.host-dashboard {
+    padding: 40px 70px;
+    background: #fafafa;
+    min-height: 100vh;
+}
+
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.dashboard-header h1 {
+    font-size: 32px;
+    font-weight: 700;
+    color: #222;
+    margin-bottom: 5px;
+}
+
+.dashboard-header p {
+    color: #717171;
+    font-size: 16px;
+}
+
+.add-property-btn {
+    background: #ff385c;
+    color: white;
+    border: none;
+    padding: 14px 25px;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.add-property-btn:hover {
+    background: #e31c5f;
+}
+
+
+/* STAT CARDS */
+
+.stats-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+    margin-bottom: 50px;
+}
+
+.stat-card {
+    background: white;
+    border: 1px solid #eee;
+    border-radius: 15px;
+    padding: 25px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.stat-card:hover {
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+}
+
+.stat-icon {
+    width: 60px;
+    height: 60px;
+    background: #fff0f3;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 28px;
+}
+
+.stat-card p {
+    color: #717171;
+    margin: 0;
+}
+
+.stat-card h2 {
+    margin-top: 5px;
+    font-size: 28px;
+}
+
+
+/* QUICK ACTION */
+
+.dashboard-section h2 {
+    margin-bottom: 25px;
+    font-weight: 600;
+}
+
+.action-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.action-card {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    border: 1px solid #eee;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.action-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.action-icon {
+    font-size: 35px;
+    margin-bottom: 20px;
+}
+
+.action-card h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.action-card p {
+    color: #717171;
+    margin: 0;
+}
+
+
+@media (max-width: 900px) {
+
+    .host-dashboard {
+        padding: 30px;
+    }
+
+    .stats-container,
+    .action-container {
+        grid-template-columns: 1fr;
+    }
+
+}

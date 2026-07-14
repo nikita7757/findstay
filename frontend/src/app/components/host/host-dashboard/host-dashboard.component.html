@@ -1,0 +1,123 @@
+<app-navbar></app-navbar>
+
+<div class="host-dashboard">
+
+    <div class="dashboard-header">
+        <div>
+            <h1>Host Dashboard</h1>
+            <p>Manage your properties and bookings</p>
+        </div>
+
+        <button
+            class="add-property-btn"
+            routerLink="/add-property">
+            + Add Property
+        </button>
+    </div>
+
+
+    <!-- DASHBOARD CARDS -->
+
+    <div class="stats-container">
+
+        <div class="stat-card">
+            <div class="stat-icon">
+                🏠
+            </div>
+
+            <div>
+                <p>Total Properties</p>
+                <h2>{{ totalProperties }}</h2>
+            </div>
+        </div>
+
+
+        <div class="stat-card">
+            <div class="stat-icon">
+                📅
+            </div>
+
+            <div>
+                <p>Total Bookings</p>
+                <h2>{{ totalBookings }}</h2>
+            </div>
+        </div>
+
+
+        <div class="stat-card">
+            <div class="stat-icon">
+                💰
+            </div>
+
+            <div>
+                <p>Total Earnings</p>
+                <h2>₹ {{ totalEarnings }}</h2>
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- QUICK ACTIONS -->
+
+    <div class="dashboard-section">
+
+        <h2>Quick Actions</h2>
+
+        <div class="action-container">
+
+            <div
+                class="action-card"
+                routerLink="/my-properties">
+
+                <div class="action-icon">
+                    🏘️
+                </div>
+
+                <h3>My Properties</h3>
+
+                <p>
+                    View, edit and manage your properties
+                </p>
+
+            </div>
+
+
+            <div
+                class="action-card"
+                routerLink="/add-property">
+
+                <div class="action-icon">
+                    ➕
+                </div>
+
+                <h3>Add Property</h3>
+
+                <p>
+                    List a new property for guests
+                </p>
+
+            </div>
+
+
+            <div
+                class="action-card"
+                routerLink="/host-bookings">
+
+                <div class="action-icon">
+                    📋
+                </div>
+
+                <h3>Bookings</h3>
+
+                <p>
+                    View bookings for your properties
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

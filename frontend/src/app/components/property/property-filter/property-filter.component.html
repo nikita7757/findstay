@@ -1,0 +1,134 @@
+<div class="filter-container">
+
+  <h4>Filters</h4>
+
+  <!-- PRICE -->
+  <div class="filter-group">
+
+    <label>Price Per Night</label>
+
+    <select
+      class="form-select"
+      [(ngModel)]="filters.priceRange">
+
+      <option value="ANY">
+        Any Price
+      </option>
+
+      <option value="BELOW_2000">
+        Below ₹2000
+      </option>
+
+      <option value="2000_5000">
+        ₹2000 - ₹5000
+      </option>
+
+      <option value="ABOVE_5000">
+        Above ₹5000
+      </option>
+
+    </select>
+
+  </div>
+
+
+  <!-- BEDROOMS -->
+  <div class="filter-group">
+
+    <label>Bedrooms</label>
+
+    <select
+      class="form-select"
+      [(ngModel)]="filters.bedrooms">
+
+      <option value="ANY">
+        Any
+      </option>
+
+      <option value="1">
+        1 Bedroom
+      </option>
+
+      <option value="2">
+        2 Bedrooms
+      </option>
+
+      <option value="3">
+        3 Bedrooms
+      </option>
+
+      <option value="4">
+        4+ Bedrooms
+      </option>
+
+    </select>
+
+  </div>
+
+
+  <!-- BATHROOMS -->
+  <div class="filter-group">
+
+    <label>Bathrooms</label>
+
+    <select
+      class="form-select"
+      [(ngModel)]="filters.bathrooms">
+
+      <option value="ANY">
+        Any
+      </option>
+
+      <option value="1">
+        1 Bathroom
+      </option>
+
+      <option value="2">
+        2 Bathrooms
+      </option>
+
+      <option value="3">
+        3+ Bathrooms
+      </option>
+
+    </select>
+
+  </div>
+
+
+  <!-- AVAILABILITY -->
+  <div class="filter-group">
+
+    <label>Availability</label>
+
+    <select
+      class="form-select"
+      [(ngModel)]="filters.availability">
+
+      <option value="ALL">
+        All
+      </option>
+
+      <option value="AVAILABLE">
+        Available
+      </option>
+
+      <option value="UNAVAILABLE">
+        Unavailable
+      </option>
+
+    </select>
+
+  </div>
+
+
+  <button
+    type="button"
+    class="btn btn-dark w-100 mt-3"
+    (click)="applyFilters()">
+
+    Apply Filters
+
+  </button>
+
+</div>
