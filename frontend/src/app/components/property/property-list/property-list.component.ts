@@ -1,5 +1,6 @@
 import {
   Component,
+  Input,
   OnInit
 } from '@angular/core';
 
@@ -29,6 +30,20 @@ export class PropertyListComponent
   implements OnInit {
 
 
+  /*
+   * true:
+   * Normal Properties page
+   * Filter + Navbar are visible
+   *
+   * false:
+   * Home page
+   * Only property cards are visible
+   */
+
+  @Input()
+  showFilter: boolean = true;
+
+
   location: string = '';
 
   guests: number = 0;
@@ -51,6 +66,7 @@ export class PropertyListComponent
 
 
   ngOnInit(): void {
+
 
     this.route.queryParamMap
       .subscribe(params => {
@@ -80,12 +96,10 @@ export class PropertyListComponent
 
 
         /*
-         * IMPORTANT:
-         *
          * If location exists,
          * search only that location.
          *
-         * Do NOT call loadProperties().
+         * Otherwise load all properties.
          */
 
         if (this.location) {
@@ -105,12 +119,10 @@ export class PropertyListComponent
 
   /*
    * LOAD ALL PROPERTIES
-   *
-   * This runs only when there is
-   * no location in the URL.
    */
 
   loadProperties(): void {
+
 
     console.log(
       'LOADING ALL PROPERTIES'
@@ -121,9 +133,11 @@ export class PropertyListComponent
       .getAllProperties()
       .subscribe({
 
+
         next: (
           response: Property[]
         ) => {
+
 
           console.log(
             'ALL PROPERTIES RESPONSE:',
@@ -146,6 +160,7 @@ export class PropertyListComponent
           error: any
         ) => {
 
+
           console.error(
             'Property Load Error:',
             error
@@ -164,7 +179,8 @@ export class PropertyListComponent
 
 
   /*
-   * SEARCH BY LOCATION
+   * SEARCH PROPERTIES
+   * BY LOCATION
    */
 
   searchProperties(): void {
@@ -182,20 +198,17 @@ export class PropertyListComponent
       )
       .subscribe({
 
+
         next: (
           response: Property[]
         ) => {
+
 
           console.log(
             'SEARCH RESULT:',
             response
           );
 
-
-          /*
-           * Backend response becomes
-           * the only available property list.
-           */
 
           this.allProperties =
             response || [];
@@ -218,6 +231,7 @@ export class PropertyListComponent
           error: any
         ) => {
 
+
           console.error(
             'Search Error:',
             error
@@ -236,7 +250,7 @@ export class PropertyListComponent
 
 
   /*
-   * APPLY FILTERS
+   * APPLY PROPERTY FILTERS
    */
 
   applyPropertyFilters(
@@ -250,10 +264,11 @@ export class PropertyListComponent
 
 
           /*
-           * PRICE
+           * PRICE FILTER
            */
 
-          let priceMatch = true;
+          let priceMatch =
+            true;
 
 
           if (
@@ -299,10 +314,11 @@ export class PropertyListComponent
 
 
           /*
-           * BEDROOMS
+           * BEDROOM FILTER
            */
 
-          let bedroomMatch = true;
+          let bedroomMatch =
+            true;
 
 
           if (
@@ -310,16 +326,20 @@ export class PropertyListComponent
             'ANY'
           ) {
 
+
             const bedrooms =
               Number(
                 filters.bedrooms
               );
 
 
-            if (bedrooms === 4) {
+            if (
+              bedrooms === 4
+            ) {
 
               bedroomMatch =
-                property.bedrooms >= 4;
+                property.bedrooms >=
+                4;
 
             } else {
 
@@ -333,10 +353,11 @@ export class PropertyListComponent
 
 
           /*
-           * BATHROOMS
+           * BATHROOM FILTER
            */
 
-          let bathroomMatch = true;
+          let bathroomMatch =
+            true;
 
 
           if (
@@ -344,16 +365,20 @@ export class PropertyListComponent
             'ANY'
           ) {
 
+
             const bathrooms =
               Number(
                 filters.bathrooms
               );
 
 
-            if (bathrooms === 3) {
+            if (
+              bathrooms === 3
+            ) {
 
               bathroomMatch =
-                property.bathrooms >= 3;
+                property.bathrooms >=
+                3;
 
             } else {
 
@@ -367,10 +392,11 @@ export class PropertyListComponent
 
 
           /*
-           * AVAILABILITY
+           * AVAILABILITY FILTER
            */
 
-          let availabilityMatch = true;
+          let availabilityMatch =
+            true;
 
 
           if (

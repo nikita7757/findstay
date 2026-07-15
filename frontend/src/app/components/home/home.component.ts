@@ -11,7 +11,11 @@ import {
   Router
 } from '@angular/router';
 
+import flatpickr from 'flatpickr';
 
+import {
+  Instance
+} from 'flatpickr/dist/types/instance';
 interface Destination {
 
   name: string;
@@ -52,7 +56,7 @@ export class HomeComponent
 
   selectedDestination: string = '';
 
-  selectedDates: Date[] | null = null;
+
 
 
   destinations: Destination[] = [];
@@ -69,7 +73,14 @@ export class HomeComponent
 
   pets: number = 0;
 
+showHomeCalendar: boolean = false;
 
+checkInDate: Date | null = null;
+
+checkOutDate: Date | null = null;
+
+private homeCalendar:
+  Instance | null = null;
   private bookingApi =
     'http://localhost:8091/bookings';
 
@@ -90,6 +101,136 @@ export class HomeComponent
 
   }
 
+openHomeCalendar(): void {
+
+  this.showHomeCalendar = true;
+
+
+  setTimeout(() => {
+
+    const calendarElement =
+      document.getElementById(
+        'home-booking-calendar'
+      );
+
+
+    if (!calendarElement) {
+
+      return;
+
+    }
+
+
+    /*
+     * Destroy previous instance
+     * before creating another one.
+     */
+
+    if (this.homeCalendar) {
+
+      this.homeCalendar.destroy();
+
+      this.homeCalendar = null;
+
+    }
+
+
+    this.homeCalendar =
+      flatpickr(
+        calendarElement,
+        {
+
+          inline: true,
+
+          mode: 'range',
+
+          showMonths: 2,
+
+          minDate: 'today',
+
+
+          defaultDate:
+
+            this.checkInDate &&
+            this.checkOutDate
+
+              ? [
+
+                  this.checkInDate,
+
+                  this.checkOutDate
+
+                ]
+
+              : undefined,
+
+
+          onChange: (
+            selectedDates: Date[]
+          ) => {
+
+
+            if (
+              selectedDates.length >= 1
+            ) {
+
+              this.checkInDate =
+                selectedDates[0];
+
+            }
+
+
+            if (
+              selectedDates.length >= 2
+            ) {
+
+              this.checkOutDate =
+                selectedDates[1];
+
+            } else {
+
+              this.checkOutDate =
+                null;
+
+            }
+
+          }
+
+        }
+      );
+
+  });
+
+}
+closeHomeCalendar(): void {
+
+  this.showHomeCalendar = false;
+
+
+  if (this.homeCalendar) {
+
+    this.homeCalendar.destroy();
+
+    this.homeCalendar = null;
+
+  }
+
+}
+
+clearHomeDates(): void {
+
+  this.checkInDate = null;
+
+  this.checkOutDate = null;
+
+
+  if (this.homeCalendar) {
+
+    this.homeCalendar.clear();
+
+  }
+
+}
 
   get totalGuests(): number {
 
@@ -127,42 +268,93 @@ export class HomeComponent
   }
 
 
-  searchProperty(): void {
+searchProperty(): void {
 
-    console.log(
-      'Location:',
-      this.selectedDestination
-    );
+  console.log(
+    'Location:',
+    this.selectedDestination
+  );
 
-    console.log(
-      'Dates:',
-      this.selectedDates
-    );
+  console.log(
+    'Check In:',
+    this.checkInDate
+  );
 
-    console.log(
-      'Guests:',
-      this.totalGuests
-    );
+  console.log(
+    'Check Out:',
+    this.checkOutDate
+  );
+
+  console.log(
+    'Guests:',
+    this.totalGuests
+  );
 
 
-    this.router.navigate(
-      ['/properties'],
-      {
+  this.router.navigate(
+    ['/properties'],
+    {
 
-        queryParams: {
+      queryParams: {
 
-          location:
-            this.selectedDestination,
+        location:
+          this.selectedDestination,
 
-          guests:
-            this.totalGuests
+        guests:
+          this.totalGuests,
 
-        }
+        checkIn:
+          this.checkInDate
+            ? this.formatDate(
+                this.checkInDate
+              )
+            : null,
+
+        checkOut:
+          this.checkOutDate
+            ? this.formatDate(
+                this.checkOutDate
+              )
+            : null
 
       }
+
+    }
+  );
+
+}
+
+formatDate(
+  date: Date
+): string {
+
+  const year =
+    date.getFullYear();
+
+
+  const month =
+    String(
+      date.getMonth() + 1
+    ).padStart(
+      2,
+      '0'
     );
 
-  }
+
+  const day =
+    String(
+      date.getDate()
+    ).padStart(
+      2,
+      '0'
+    );
+
+
+  return (
+    `${year}-${month}-${day}`
+  );
+
+}
 
 
   selectDestination(

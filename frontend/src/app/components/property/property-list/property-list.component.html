@@ -1,14 +1,24 @@
-<app-navbar></app-navbar>
+<app-navbar *ngIf="showFilter"></app-navbar>
 
-<div class="property-list">
+<div
+  class="property-page"
+  [class.without-filter-page]="!showFilter">
 
   <app-property-filter
+    *ngIf="showFilter"
     (filtersChanged)="applyPropertyFilters($event)">
   </app-property-filter>
 
-  <app-property-card
-    *ngFor="let property of properties"
-    [property]="property">
-  </app-property-card>
+
+  <div
+    class="property-list"
+    [class.without-filter]="!showFilter">
+
+    <app-property-card
+      *ngFor="let property of properties"
+      [property]="property">
+    </app-property-card>
+
+  </div>
 
 </div>

@@ -17,16 +17,16 @@
         <div class="search-bar-container">
 
 
-          <!-- WHERE -->
+          <!-- =========================
+               WHERE
+          ========================== -->
 
           <div
             class="search-section where-section position-relative">
 
-
             <label class="search-label">
               Where
             </label>
-
 
             <input
               type="text"
@@ -43,7 +43,6 @@
               class="destination-dropdown"
               *ngIf="showDropdown">
 
-
               <h6 class="dropdown-title">
                 Suggested destinations
               </h6>
@@ -53,7 +52,6 @@
                 class="destination-item"
                 *ngFor="let place of destinations"
                 (mousedown)="selectDestination(place)">
-
 
                 <div class="icon-box">
 
@@ -74,9 +72,10 @@
 
                 </div>
 
-
               </div>
 
+
+              <!-- NO DESTINATIONS -->
 
               <div
                 class="destination-item"
@@ -92,50 +91,69 @@
 
               </div>
 
-
             </div>
-
 
           </div>
 
 
+          <!-- DIVIDER -->
+
           <div class="search-divider"></div>
 
 
-          <!-- CHECK IN / CHECK OUT -->
+          <!-- =========================
+               CHECK IN / CHECK OUT
+          ========================== -->
 
-          <div class="search-section calendar-section">
-
+          <div
+            class="search-section calendar-section"
+            (click)="openHomeCalendar()">
 
             <label class="search-label">
               Check in - Check out
             </label>
 
 
-            <input
-              mwlFlatpickr
-              class="form-control search-input calendar-input"
-              [(ngModel)]="selectedDates"
-              [altInput]="true"
-              [mode]="'range'"
-              [showMonths]="2"
-              [dateFormat]="'Y-m-d'"
-              [altFormat]="'j M'"
-              [minDate]="'today'"
-              placeholder="Add dates">
+            <div class="calendar-display">
 
+
+              <!-- NO DATES SELECTED -->
+
+              <span
+                *ngIf="!checkInDate || !checkOutDate">
+
+                Add dates
+
+              </span>
+
+
+              <!-- DATES SELECTED -->
+
+              <span
+                *ngIf="checkInDate && checkOutDate">
+
+                {{ checkInDate | date:'d MMM' }}
+                -
+                {{ checkOutDate | date:'d MMM' }}
+
+              </span>
+
+            </div>
 
           </div>
 
 
+          <!-- DIVIDER -->
+
           <div class="search-divider"></div>
 
 
-          <!-- GUESTS -->
+          <!-- =========================
+               GUESTS
+          ========================== -->
 
           <div
             class="search-section guest-section position-relative">
-
 
             <label class="search-label">
               Guests
@@ -186,9 +204,11 @@
 
                   </button>
 
+
                   <span>
                     {{ adults }}
                   </span>
+
 
                   <button
                     type="button"
@@ -230,9 +250,11 @@
 
                   </button>
 
+
                   <span>
                     {{ children }}
                   </span>
+
 
                   <button
                     type="button"
@@ -274,9 +296,11 @@
 
                   </button>
 
+
                   <span>
                     {{ infants }}
                   </span>
+
 
                   <button
                     type="button"
@@ -318,9 +342,11 @@
 
                   </button>
 
+
                   <span>
                     {{ pets }}
                   </span>
+
 
                   <button
                     type="button"
@@ -334,14 +360,14 @@
 
               </div>
 
-
             </div>
-
 
           </div>
 
 
-          <!-- SEARCH BUTTON -->
+          <!-- =========================
+               SEARCH BUTTON
+          ========================== -->
 
           <button
             type="button"
@@ -352,11 +378,9 @@
 
           </button>
 
-
         </div>
 
       </div>
-
 
     </div>
 
@@ -366,10 +390,106 @@
 
 
 
-<!-- POPULAR DESTINATIONS -->
+<!-- =====================================
+     HOME CALENDAR OVERLAY
+====================================== -->
+
+<div
+  class="home-calendar-overlay"
+  *ngIf="showHomeCalendar"
+  (click)="closeHomeCalendar()">
 
 
-<div class="popular-section">
+  <div
+    class="home-calendar-modal"
+    (click)="$event.stopPropagation()">
+
+
+    <!-- CALENDAR HEADER -->
+
+    <div class="home-calendar-header">
+
+      <div>
+
+        <h2>
+          Select dates
+        </h2>
+
+
+        <!-- NO COMPLETE RANGE -->
+
+        <p
+          *ngIf="!checkInDate || !checkOutDate">
+
+          Add your travel dates
+
+        </p>
+
+
+        <!-- COMPLETE RANGE SELECTED -->
+
+        <p
+          *ngIf="checkInDate && checkOutDate">
+
+          {{ checkInDate | date:'dd MMM yyyy' }}
+
+          -
+
+          {{ checkOutDate | date:'dd MMM yyyy' }}
+
+        </p>
+
+      </div>
+
+    </div>
+
+
+    <!-- FLATPICKR CALENDAR -->
+
+    <div id="home-booking-calendar"></div>
+
+
+    <!-- CALENDAR FOOTER -->
+
+    <div class="home-calendar-footer">
+
+
+      <!-- CLEAR DATES -->
+
+      <button
+        type="button"
+        class="clear-calendar-btn"
+        (click)="clearHomeDates()">
+
+        Clear dates
+
+      </button>
+
+
+      <!-- CLOSE CALENDAR -->
+
+      <button
+        type="button"
+        class="close-home-calendar-btn"
+        (click)="closeHomeCalendar()">
+
+        Close
+
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+
+<!-- =====================================
+     POPULAR STAYS
+====================================== -->
+
+<section class="popular-section">
 
   <h2>
     Popular Stays
@@ -385,33 +505,60 @@
       (click)="viewProperty(place.propertyId)">
 
 
+      <!-- PROPERTY IMAGE -->
+
       <img
         [src]="place.image"
         [alt]="place.name">
 
 
+      <!-- PROPERTY INFORMATION -->
+
       <div class="destination-info">
+
 
         <h5>
           {{ place.name }}
         </h5>
 
 
-        <p>
-          📍 {{ place.location }}
+        <p class="destination-location">
+
+          <i class="bi bi-geo-alt-fill"></i>
+
+          {{ place.location }}
+
         </p>
 
 
-        <p>
-          {{ place.bookingCount }} bookings
+        <p class="booking-count">
+
+          {{ place.bookingCount }}
+          bookings
+
         </p>
 
       </div>
 
-
     </div>
-
 
   </div>
 
-</div>
+</section>
+
+<!-- ================================
+     EXPLORE STAYS
+================================ -->
+
+<section class="explore-stays-section">
+
+  <h2>
+    Explore Stays
+  </h2>
+
+
+  <app-property-list
+    [showFilter]="false">
+  </app-property-list>
+
+</section>

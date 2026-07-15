@@ -27,9 +27,11 @@
 /* LOGO */
 
 .logo {
-    cursor: pointer;
+  width: 140px;
+  height: auto;
+  object-fit: contain;
+  background: transparent;
 }
-
 
 .logo img {
     width: 110px;
