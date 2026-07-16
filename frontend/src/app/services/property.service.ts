@@ -22,8 +22,7 @@ import {
 export class PropertyService {
 
 
-  private apiUrl =
-    'http://localhost:8091/properties';
+private apiUrl = "https://findstay-backend.onrender.com/properties";
 
 
   constructor(

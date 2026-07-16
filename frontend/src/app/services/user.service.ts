@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class UserService {
 
-  private apiUrl = 'http://localhost:8091/users';
+ private apiUrl = "https://findstay-backend.onrender.com/users";
 
   constructor(private http: HttpClient) { }
 
