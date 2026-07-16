@@ -66,7 +66,7 @@ export class HostDashboardComponent
 
 
   private bookingApi =
-    'http://localhost:8091/bookings';
+    'http://findstay-backend.onrender.com/bookings';
 
 
   constructor(

@@ -42,7 +42,7 @@ export class WishlistComponent
     number | null = null;
 
   private propertyImageApi =
-    'http://localhost:8091/property-images';
+    'http://findstay-backend.onrender.com/property-images';
 
 
   constructor(

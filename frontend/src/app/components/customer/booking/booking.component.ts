@@ -321,7 +321,8 @@ confirmBooking(): void {
 
   this.http
     .post(
-      'http://localhost:8091/bookings/create-booking',
+      
+      'https://findstay-backend.onrender.com/bookings/create-booking',
       booking
     )
     .subscribe({
