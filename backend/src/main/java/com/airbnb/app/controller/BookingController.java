@@ -18,7 +18,10 @@ import com.airbnb.app.entity.Booking;
 
 @RestController
 @RequestMapping("/bookings")
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = {
+    "http://localhost:4200",
+    "https://YOUR-VERCEL-PROJECT.vercel.app"
+})
 public class BookingController {
 
     @Autowired
