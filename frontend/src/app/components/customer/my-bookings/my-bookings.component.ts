@@ -60,11 +60,11 @@ export class MyBookingsComponent
 
 
   private bookingApi =
-    'https://findstay-backend.onrender.com/bookings';
+    'https://findstay-4353.onrender.com/bookings';
 
 
   private propertyImageApi =
-    'https://findstay-backend.onrender.com/property-images';
+    'https://findstay-4353.onrender.com/property-images';
 
 
   constructor(

@@ -22,7 +22,7 @@ import {
 export class PropertyService {
 
 
-private apiUrl = "https://findstay-backend.onrender.com/properties";
+private apiUrl = "https://findstay-4353.onrender.com/properties";
 
 
   constructor(

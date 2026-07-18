@@ -66,7 +66,7 @@ export class HostDashboardComponent
 
 
   private bookingApi =
-    'https://findstay-backend.onrender.com/bookings';
+    'https://findstay-4353.onrender.com/bookings';
 
 
   constructor(

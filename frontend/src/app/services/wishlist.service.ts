@@ -61,7 +61,7 @@ export class WishlistService {
 
 
   private apiUrl =
-    'https://findstay-backend.onrender.com/wishlist';
+    'https://findstay-4353.onrender.com/wishlist';
 
 
   constructor(
