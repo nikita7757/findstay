@@ -22,8 +22,9 @@ import com.airbnb.app.model.LoginRequestDTO;
 @RequestMapping("/users")
 @CrossOrigin(origins = {
     "http://localhost:4200",
-    "https://YOUR-VERCEL-PROJECT.vercel.app"
+    "https://findstay.vercel.app"
 })
+
 public class UserController {
     
     @Autowired

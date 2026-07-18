@@ -83,11 +83,11 @@ export class HostBookingsComponent
 
 
   private bookingApi =
-    'http://findstay-backend.onrender.com/bookings';
+    'https://findstay-backend.onrender.com/bookings';
 
 
   private propertyImageApi =
-    'http://findstay-backend.onrender.com/property-images';
+    'https://findstay-backend.onrender.com/property-images';
 
 
   constructor(

@@ -46,7 +46,7 @@ export class ProfileComponent
 
 
   private userApi =
-    'http://findstay-backend.onrender.com/users';
+    'https://findstay-backend.onrender.com/users';
 
 
   constructor(

@@ -17,7 +17,7 @@ export class PropertyCardComponent implements OnInit {
     'assets/property-placeholder.jpg';
 
   private propertyImageApi =
-    'http://findstay-backend.onrender.com/property-images';
+    'https://findstay-backend.onrender.com/property-images';
 
   constructor(
     private http: HttpClient

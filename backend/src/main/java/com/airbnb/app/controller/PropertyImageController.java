@@ -20,8 +20,9 @@ import com.airbnb.app.entity.PropertyImage;
 @RequestMapping("/property-images")
 @CrossOrigin(origins = {
     "http://localhost:4200",
-    "https://YOUR-VERCEL-PROJECT.vercel.app"
+    "https://findstay.vercel.app"
 })
+
 public class PropertyImageController {
 
     @Autowired

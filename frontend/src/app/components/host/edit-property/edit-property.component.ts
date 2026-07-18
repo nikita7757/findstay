@@ -47,14 +47,14 @@ interface Category {
 export class EditPropertyComponent implements OnInit {
 
   private propertyImageApi =
-    'http://findstay-backend.onrender.com/property-images';
+    'https://findstay-backend.onrender.com/property-images';
 
 categories: Category[] = [];
 
 selectedCategoryId: number | null = null;
 
 private categoryApi =
-  'http://findstay-backend.onrender.com/categories';
+  'https://findstay-backend.onrender.com/categories';
 
   property?: Property;
 

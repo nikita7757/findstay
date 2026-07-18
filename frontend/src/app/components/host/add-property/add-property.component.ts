@@ -55,11 +55,11 @@ implements OnInit {
 
 
   private categoryApi =
-    'http://findstay-backend.onrender.com/categories';
+    'https://findstay-backend.onrender.com/categories';
 
 
   private propertyImageApi =
-    'http://findstay-backend.onrender.com/property-images';
+    'https://findstay-backend.onrender.com/property-images';
 
 
   property: Property = {

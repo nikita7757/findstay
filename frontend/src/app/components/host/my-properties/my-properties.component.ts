@@ -41,7 +41,7 @@ export class MyPropertiesComponent
 
 
   private propertyImageApi =
-    'http://findstay-backend.onrender.com/property-images';
+    'https://findstay-backend.onrender.com/property-images';
 
 
   constructor(
