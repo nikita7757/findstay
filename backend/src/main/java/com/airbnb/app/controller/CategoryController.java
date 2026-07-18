@@ -18,11 +18,6 @@ import com.airbnb.app.entity.Category;
 
 @RestController
 @RequestMapping("/categories")
-@CrossOrigin(origins = {
-    "http://localhost:4200",
-    "https://findstay.vercel.app"
-})
-
 public class CategoryController {
 
     @Autowired

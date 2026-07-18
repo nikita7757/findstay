@@ -18,11 +18,6 @@ import com.airbnb.app.entity.Review;
 
 @RestController
 @RequestMapping("/reviews")
-@CrossOrigin(origins = {
-    "http://localhost:4200",
-    "https://findstay.vercel.app"
-})
-
 public class ReviewController {
 
     @Autowired

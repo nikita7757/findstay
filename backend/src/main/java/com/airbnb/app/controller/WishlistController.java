@@ -18,11 +18,6 @@ import com.airbnb.app.entity.Wishlist;
 
 @RestController
 @RequestMapping("/wishlist")
-@CrossOrigin(origins = {
-    "http://localhost:4200",
-    "https://findstay.vercel.app"
-})
-
 public class WishlistController {
 
 

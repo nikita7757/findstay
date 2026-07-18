@@ -20,11 +20,6 @@ import com.airbnb.app.entity.Property;
 
 @RestController
 @RequestMapping("/properties")
-@CrossOrigin(origins = {
-    "http://localhost:4200",
-    "https://findstay.vercel.app"
-})
-
 public class PropertyController {
 
 
