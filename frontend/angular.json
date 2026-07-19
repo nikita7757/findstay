@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "airbnb_app": {
+    "findstay_app": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/airbnb_app",
+            "outputPath": "dist/findstay_app",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [
@@ -64,10 +64,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "airbnb_app:build:production"
+              "browserTarget": "findstay_app:build:production"
             },
             "development": {
-              "browserTarget": "airbnb_app:build:development"
+              "browserTarget": "findstay_app:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -75,7 +75,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "airbnb_app:build"
+              "browserTarget": "findstay_app:build"
           }
         },
         "test": {
