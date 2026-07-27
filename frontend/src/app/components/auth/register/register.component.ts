@@ -65,10 +65,23 @@ register(): void {
         this.router.navigate(['/login']);
       },
 
-      error: (error) => {
-        console.error(error);
-        alert('Registration Failed');
-      }
+      error: (error: any) => {
+
+  console.error(error);
+
+  if (error.error) {
+
+    const message = Object.values(error.error).join('\n');
+
+    alert(message);
+
+  } else {
+
+    alert('Registration Failed');
+
+  }
+
+}
 
     });
 
