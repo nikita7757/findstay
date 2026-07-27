@@ -14,7 +14,7 @@ export class PropertyCardComponent implements OnInit {
   property!: Property;
 
   propertyImage: string =
-    'assets/property-placeholder.jpg';
+    ' ';
 
   private propertyImageApi =
     'https://findstay-4353.onrender.com/property-images';
@@ -28,48 +28,11 @@ export class PropertyCardComponent implements OnInit {
     this.loadPropertyImage();
 
   }
+loadPropertyImage(): void {
 
-  loadPropertyImage(): void {
+  this.propertyImage =
+    `${this.propertyImageApi}/property/${this.property.id}`;
 
-    this.http
-      .get<any[]>(this.propertyImageApi)
-      .subscribe({
-
-        next: (images: any[]) => {
-
-          const propertyImages =
-            images.filter(image =>
-              image.property &&
-              image.property.id === this.property.id
-            );
-
-          console.log(
-            'Property ID:',
-            this.property.id,
-            'Images:',
-            propertyImages
-          );
-
-          if (propertyImages.length > 0) {
-
-            this.propertyImage =
-              propertyImages[0].imageUrl;
-
-          }
-
-        },
-
-        error: (error: any) => {
-
-          console.error(
-            'Property Image Error:',
-            error
-          );
-
-        }
-
-      });
-
-  }
+}
 
 }

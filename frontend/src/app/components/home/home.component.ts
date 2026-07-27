@@ -516,7 +516,7 @@ formatDate(
                 Number(item[3]),
 
               image:
-                'assets/property-placeholder.jpg'
+                ''
 
             }));
 

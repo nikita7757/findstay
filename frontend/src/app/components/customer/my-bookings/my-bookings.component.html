@@ -71,10 +71,8 @@
 
 
                 <img
-                [src]="
-                    booking.imageUrl ||
-                    'assets/property-placeholder.jpg'
-                "
+                *ngIf="booking.imageUrl"
+                [src]="booking.imageUrl"
                 [alt]="booking.property.title">
 
 

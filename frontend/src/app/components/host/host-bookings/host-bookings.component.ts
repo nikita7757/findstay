@@ -191,7 +191,7 @@ export class HostBookingsComponent
                   ...booking,
 
                   imageUrl:
-                    'assets/property-placeholder.jpg'
+                    ''
 
                 })
               );

@@ -131,17 +131,10 @@ export class MyBookingsComponent
           );
 
 
-          this.bookings =
-            response.map(
-              booking => ({
-
-                ...booking,
-
-                imageUrl:
-                  'assets/property-placeholder.jpg'
-
-              })
-            );
+          this.bookings = response.map(booking => ({
+  ...booking,
+  imageUrl: ''
+}));
 
 
           this.loading = false;

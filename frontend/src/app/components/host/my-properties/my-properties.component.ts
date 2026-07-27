@@ -109,7 +109,7 @@ export class MyPropertiesComponent
                 ...property,
 
                 imageUrl:
-                  'assets/property-placeholder.jpg'
+                  ''
 
               })
             );

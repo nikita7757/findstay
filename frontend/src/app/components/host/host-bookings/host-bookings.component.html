@@ -99,7 +99,7 @@
                     <img
                         [src]="
                             booking.imageUrl ||
-                            'assets/property-placeholder.jpg'
+                            '<img [src]="propertyImage">'
                         "
                         [alt]="booking.property.title">
 

@@ -109,7 +109,7 @@ export class WishlistComponent
               ...item,
 
               imageUrl:
-                'assets/property-placeholder.jpg'
+                ''
 
             }));
 
