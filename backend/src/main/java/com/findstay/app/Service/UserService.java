@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import com.findstay.app.dao.UserDao;
 import com.findstay.app.entity.User;
+import com.findstay.app.model.UserDTO;
 
 
 @Service
@@ -46,6 +47,17 @@ public User loginUser(String email, String password) {
                                User user) {
         return dao.updateUser(id, user);
     }
+
+    public User register(UserDTO userDTO) {
+
+    User user = new User();
+
+    user.setName(userDTO.getName());
+    user.setEmail(userDTO.getEmail());
+    user.setPassword(userDTO.getPassword());
+
+    return dao.saveUser(user);
+}
 }
 
     
