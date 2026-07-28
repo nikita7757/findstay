@@ -27,8 +27,9 @@
                     placeholder="Enter your password">
             </div>
 
-            <button type="submit" class="auth-btn">
-                Login
+            <button type="submit" class="auth-btn" [disabled]="isLoading">
+                <span *ngIf="isLoading" class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                <span>{{ isLoading ? 'Logging in...' : 'Login' }}</span>
             </button>
 
         </form>

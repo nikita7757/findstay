@@ -17,6 +17,8 @@ export class RegisterComponent {
     confirmPassword: ''
   };
 
+  isLoading: boolean = false;
+
   constructor(
        private userService: UserService,
     private router: Router
@@ -47,9 +49,12 @@ register(): void {
       password: this.user.password,
     };
 
+    this.isLoading = true;
+
     this.userService.registerUser(userData).subscribe({
 
       next: (response) => {
+        this.isLoading = false;
         alert('Registration Successful');
         console.log(response);
 
@@ -67,21 +72,22 @@ register(): void {
 
       error: (error: any) => {
 
-  console.error(error);
+        this.isLoading = false;
+        console.error(error);
 
-  if (error.error) {
+        if (error.error) {
 
-    const message = Object.values(error.error).join('\n');
+          const message = Object.values(error.error).join('\n');
 
-    alert(message);
+          alert(message);
 
-  } else {
+        } else {
 
-    alert('Registration Failed');
+          alert('Registration Failed');
 
-  }
+        }
 
-}
+      }
 
     });
 

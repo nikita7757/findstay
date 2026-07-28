@@ -204,7 +204,7 @@ property?: Property;
 
     this.http
       .get<PropertyImage[]>(
-        this.propertyImageApi
+        `${this.propertyImageApi}/property/${propertyId}`
       )
       .subscribe({
 
@@ -213,17 +213,7 @@ property?: Property;
         ) => {
 
 
-          this.propertyImages =
-            images.filter(
-
-              image =>
-
-                image.property &&
-
-                image.property.id ===
-                propertyId
-
-            );
+          this.propertyImages = images || [];
 
 
           console.log(

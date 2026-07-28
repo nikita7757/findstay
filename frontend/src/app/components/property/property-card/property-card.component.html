@@ -4,8 +4,14 @@
 
     <div class="property-image">
 
+        <!-- Skeleton Loader -->
+        <div *ngIf="imageLoading" class="image-skeleton">
+            <div class="skeleton-shimmer"></div>
+        </div>
+
         <img
-            [src]="propertyImage"
+            *ngIf="!imageLoading"
+            [src]="propertyImage ? propertyImage : 'assets/authbackgroundimg.png'"
             [alt]="property.title">
 
         <div class="favorite">

@@ -13,8 +13,8 @@ export class PropertyCardComponent implements OnInit {
   @Input()
   property!: Property;
 
-  propertyImage: string =
-    ' ';
+  propertyImage: string = '';
+  imageLoading: boolean = true;
 
   private propertyImageApi =
     'https://findstay-4353.onrender.com/property-images';
@@ -28,11 +28,25 @@ export class PropertyCardComponent implements OnInit {
     this.loadPropertyImage();
 
   }
-loadPropertyImage(): void {
-
-  this.propertyImage =
-    `${this.propertyImageApi}/property/${this.property.id}`;
+  loadPropertyImage(): void {
+    this.imageLoading = true;
+    this.http.get<any[]>(`${this.propertyImageApi}/property/${this.property.id}`)
+      .subscribe({
+        next: (images: any[]) => {
+          if (images && images.length > 0) {
+            this.propertyImage = images[0].imageUrl;
+          } else {
+            this.propertyImage = '';
+          }
+          this.imageLoading = false;
+        },
+        error: (err) => {
+          console.error('Error loading property image:', err);
+          this.propertyImage = '';
+          this.imageLoading = false;
+        }
+      });
+  }
 
 }
 
-}

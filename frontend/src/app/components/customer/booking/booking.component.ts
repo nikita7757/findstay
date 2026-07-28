@@ -45,6 +45,7 @@ export class BookingComponent
 
 
   loading: boolean = true;
+  propertyImage: string = '';
 formatDate(date: Date): string {
 
   const year =
@@ -150,37 +151,52 @@ constructor(
           );
 
 
-          this.property = response;
+           this.property = response;
 
 
-          this.calculateTax();
+           this.calculateTax();
 
 
-          this.loading = false;
+           this.loadPropertyImage();
+           this.loading = false;
 
-        },
-
-
-        error: (error: any) => {
-
-          console.error(
-            'Property Load Error:',
-            error
-          );
+         },
 
 
-          this.loading = false;
+         error: (error: any) => {
+
+           console.error(
+             'Property Load Error:',
+             error
+           );
 
 
-          alert(
-            'Failed to load property'
-          );
+           this.loading = false;
 
-        }
 
-      });
+           alert(
+             'Failed to load property'
+           );
 
-  }
+         }
+
+       });
+
+   }
+
+   loadPropertyImage(): void {
+     this.http.get<any[]>(`https://findstay-4353.onrender.com/property-images/property/${this.propertyId}`)
+       .subscribe({
+         next: (images: any[]) => {
+           if (images && images.length > 0) {
+             this.propertyImage = images[0].imageUrl;
+           }
+         },
+         error: (err) => {
+           console.error('Error loading property image:', err);
+         }
+       });
+   }
 
 
   calculateTax(): void {

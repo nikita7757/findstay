@@ -13,6 +13,7 @@ export class LoginComponent {
     email: '',
     password: ''
   };
+  isLoading: boolean = false;
 
   constructor(
     private userService: UserService,
@@ -28,11 +29,14 @@ export class LoginComponent {
       return;
     }
 
+    this.isLoading = true;
+
     this.userService
       .loginUser(this.user)
       .subscribe({
 
         next: (response: any) => {
+          this.isLoading = false;
 
           console.log('Login Response:', response);
 
@@ -91,6 +95,7 @@ export class LoginComponent {
 
           } else {
 
+            this.isLoading = false;
             alert('Invalid Email or Password');
 
           }
@@ -99,6 +104,7 @@ export class LoginComponent {
 
         error: (error: any) => {
 
+          this.isLoading = false;
           console.error(
             'Login Error:',
             error
