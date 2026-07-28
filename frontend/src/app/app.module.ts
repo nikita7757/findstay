@@ -29,7 +29,6 @@ import { PropertyListComponent } from './components/property/property-list/prope
 import { FooterComponent } from './components/layout/footer/footer.component';
 import { FlatpickrModule } from 'angularx-flatpickr';
 import { FormsModule } from '@angular/forms';
-import { UserComponent } from './components/user/user.component';
 import { HttpClientModule } from '@angular/common/http';
 
 
@@ -63,8 +62,7 @@ import { HttpClientModule } from '@angular/common/http';
     PropertiesComponent,
     RegisterComponent,
     PropertyListComponent,
-    FooterComponent,
-    UserComponent
+    FooterComponent
   ],
   imports: [
     BrowserModule,
