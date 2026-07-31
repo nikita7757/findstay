@@ -21,9 +21,6 @@ import { ProfileComponent } from './components/customer/profile/profile.componen
 import { WishlistComponent } from './components/customer/wishlist/wishlist.component';
 import { ReviewCardComponent } from './components/review/review-card/review-card.component';
 import { ReviewFormComponent } from './components/review/review-form/review-form.component';
-import { AdminDashboardComponent } from './components/admin/admin-dashboard/admin-dashboard.component';
-import { UsersComponent } from './components/admin/users/users.component';
-import { PropertiesComponent } from './components/admin/properties/properties.component';
 import { RegisterComponent } from './components/auth/register/register.component';
 import { PropertyListComponent } from './components/property/property-list/property-list.component';
 import { FooterComponent } from './components/layout/footer/footer.component';
@@ -57,9 +54,6 @@ import { HttpClientModule } from '@angular/common/http';
     WishlistComponent,
     ReviewCardComponent,
     ReviewFormComponent,
-    AdminDashboardComponent,
-    UsersComponent,
-    PropertiesComponent,
     RegisterComponent,
     PropertyListComponent,
     FooterComponent
