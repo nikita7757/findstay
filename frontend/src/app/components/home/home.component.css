@@ -112,23 +112,11 @@
 
 
 .where-section {
-    position: relative;
-
-    flex: 1.5;
+    flex: 2;
 }
-
-
-.calendar-section {
-    position: relative;
-
-    flex: 1.8;
-}
-
 
 .guest-section {
-    position: relative;
-
-    flex: 1.2;
+    flex: 1;
 }
 
 

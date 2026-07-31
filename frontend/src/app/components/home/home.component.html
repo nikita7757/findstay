@@ -101,47 +101,7 @@
           <div class="search-divider"></div>
 
 
-          <!-- =========================
-               CHECK IN / CHECK OUT
-          ========================== -->
-
-          <div
-            class="search-section calendar-section"
-            (click)="openHomeCalendar()">
-
-            <label class="search-label">
-              Check in - Check out
-            </label>
-
-
-            <div class="calendar-display">
-
-
-              <!-- NO DATES SELECTED -->
-
-              <span
-                *ngIf="!checkInDate || !checkOutDate">
-
-                Add dates
-
-              </span>
-
-
-              <!-- DATES SELECTED -->
-
-              <span
-                *ngIf="checkInDate && checkOutDate">
-
-                {{ checkInDate | date:'d MMM' }}
-                -
-                {{ checkOutDate | date:'d MMM' }}
-
-              </span>
-
-            </div>
-
-          </div>
-
+          
 
           <!-- DIVIDER -->
 
@@ -389,97 +349,6 @@
 </section>
 
 
-
-<!-- =====================================
-     HOME CALENDAR OVERLAY
-====================================== -->
-
-<div
-  class="home-calendar-overlay"
-  *ngIf="showHomeCalendar"
-  (click)="closeHomeCalendar()">
-
-
-  <div
-    class="home-calendar-modal"
-    (click)="$event.stopPropagation()">
-
-
-    <!-- CALENDAR HEADER -->
-
-    <div class="home-calendar-header">
-
-      <div>
-
-        <h2>
-          Select dates
-        </h2>
-
-
-        <!-- NO COMPLETE RANGE -->
-
-        <p
-          *ngIf="!checkInDate || !checkOutDate">
-
-          Add your travel dates
-
-        </p>
-
-
-        <!-- COMPLETE RANGE SELECTED -->
-
-        <p
-          *ngIf="checkInDate && checkOutDate">
-
-          {{ checkInDate | date:'dd MMM yyyy' }}
-
-          -
-
-          {{ checkOutDate | date:'dd MMM yyyy' }}
-
-        </p>
-
-      </div>
-
-    </div>
-
-
-    <!-- FLATPICKR CALENDAR -->
-
-    <div id="home-booking-calendar"></div>
-
-
-    <!-- CALENDAR FOOTER -->
-
-    <div class="home-calendar-footer">
-
-
-      <!-- CLEAR DATES -->
-
-      <button
-        type="button"
-        class="clear-calendar-btn"
-        (click)="clearHomeDates()">
-
-        Clear dates
-
-      </button>
-
-
-      <!-- CLOSE CALENDAR -->
-
-      <button
-        type="button"
-        class="close-home-calendar-btn"
-        (click)="closeHomeCalendar()">
-
-        Close
-
-      </button>
-
-    </div>
-
-  </div>
 
 </div>
 

@@ -11,11 +11,8 @@ import {
   Router
 } from '@angular/router';
 
-import flatpickr from 'flatpickr';
 
-import {
-  Instance
-} from 'flatpickr/dist/types/instance';
+
 interface Destination {
 
   name: string;
@@ -48,46 +45,24 @@ interface PopularDestination {
 export class HomeComponent
   implements OnInit {
 
+showDropdown = false;
+showGuestDropdown = false;
 
-  showDropdown: boolean = false;
+selectedDestination = '';
 
-  showGuestDropdown: boolean = false;
+destinations: Destination[] = [];
+popularDestinations: PopularDestination[] = [];
 
+adults = 0;
+children = 0;
+infants = 0;
+pets = 0;
 
-  selectedDestination: string = '';
+private bookingApi =
+  'https://findstay-4353.onrender.com/bookings';
 
-
-
-
-  destinations: Destination[] = [];
-
-  popularDestinations:
-    PopularDestination[] = [];
-
-
-  adults: number = 0;
-
-  children: number = 0;
-
-  infants: number = 0;
-
-  pets: number = 0;
-
-showHomeCalendar: boolean = false;
-
-checkInDate: Date | null = null;
-
-checkOutDate: Date | null = null;
-
-private homeCalendar:
-  Instance | null = null;
-  private bookingApi =
-    'https://findstay-4353.onrender.com/bookings';
-
-
-  private propertyImageApi =
-    'https://findstay-4353.onrender.com/property-images';
-
+private propertyImageApi =
+  'https://findstay-4353.onrender.com/property-images';
 
   constructor(
     private router: Router,
@@ -101,136 +76,8 @@ private homeCalendar:
 
   }
 
-openHomeCalendar(): void {
-
-  this.showHomeCalendar = true;
 
 
-  setTimeout(() => {
-
-    const calendarElement =
-      document.getElementById(
-        'home-booking-calendar'
-      );
-
-
-    if (!calendarElement) {
-
-      return;
-
-    }
-
-
-    /*
-     * Destroy previous instance
-     * before creating another one.
-     */
-
-    if (this.homeCalendar) {
-
-      this.homeCalendar.destroy();
-
-      this.homeCalendar = null;
-
-    }
-
-
-    this.homeCalendar =
-      flatpickr(
-        calendarElement,
-        {
-
-          inline: true,
-
-          mode: 'range',
-
-          showMonths: 2,
-
-          minDate: 'today',
-
-
-          defaultDate:
-
-            this.checkInDate &&
-            this.checkOutDate
-
-              ? [
-
-                  this.checkInDate,
-
-                  this.checkOutDate
-
-                ]
-
-              : undefined,
-
-
-          onChange: (
-            selectedDates: Date[]
-          ) => {
-
-
-            if (
-              selectedDates.length >= 1
-            ) {
-
-              this.checkInDate =
-                selectedDates[0];
-
-            }
-
-
-            if (
-              selectedDates.length >= 2
-            ) {
-
-              this.checkOutDate =
-                selectedDates[1];
-
-            } else {
-
-              this.checkOutDate =
-                null;
-
-            }
-
-          }
-
-        }
-      );
-
-  });
-
-}
-closeHomeCalendar(): void {
-
-  this.showHomeCalendar = false;
-
-
-  if (this.homeCalendar) {
-
-    this.homeCalendar.destroy();
-
-    this.homeCalendar = null;
-
-  }
-
-}
-
-clearHomeDates(): void {
-
-  this.checkInDate = null;
-
-  this.checkOutDate = null;
-
-
-  if (this.homeCalendar) {
-
-    this.homeCalendar.clear();
-
-  }
-
-}
 
   get totalGuests(): number {
 
@@ -270,91 +117,18 @@ clearHomeDates(): void {
 
 searchProperty(): void {
 
-  console.log(
-    'Location:',
-    this.selectedDestination
-  );
-
-  console.log(
-    'Check In:',
-    this.checkInDate
-  );
-
-  console.log(
-    'Check Out:',
-    this.checkOutDate
-  );
-
-  console.log(
-    'Guests:',
-    this.totalGuests
-  );
-
-
   this.router.navigate(
     ['/properties'],
     {
-
       queryParams: {
-
-        location:
-          this.selectedDestination,
-
-        guests:
-          this.totalGuests,
-
-        checkIn:
-          this.checkInDate
-            ? this.formatDate(
-                this.checkInDate
-              )
-            : null,
-
-        checkOut:
-          this.checkOutDate
-            ? this.formatDate(
-                this.checkOutDate
-              )
-            : null
-
+        location: this.selectedDestination,
+        guests: this.totalGuests
       }
-
     }
   );
 
 }
 
-formatDate(
-  date: Date
-): string {
-
-  const year =
-    date.getFullYear();
-
-
-  const month =
-    String(
-      date.getMonth() + 1
-    ).padStart(
-      2,
-      '0'
-    );
-
-
-  const day =
-    String(
-      date.getDate()
-    ).padStart(
-      2,
-      '0'
-    );
-
-
-  return (
-    `${year}-${month}-${day}`
-  );
-
-}
 
 
   selectDestination(
